@@ -1,0 +1,9 @@
+{
+  "event_id": "sample-006-001",
+  "event_type": "COMMISSION_OPENED",
+  "aggregate_type": "site_commission",
+  "aggregate_id": "public_art_cocreation-001",
+  "occurred_at": "2026-09-20T18:00:00+08:00",
+  "version": 1,
+  "summary": "登记公共艺术共创履约簿的首条领域记录"
+}
