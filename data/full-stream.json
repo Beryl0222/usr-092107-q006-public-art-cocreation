@@ -1,0 +1,693 @@
+[
+  {
+    "event_id": "evt-001",
+    "event_type": "COMMISSION_OPENED",
+    "aggregate_type": "site_commission",
+    "aggregate_id": "C-2026-001",
+    "occurred_at": "2026-09-20T10:00:00+08:00",
+    "version": 1,
+    "summary": "社会实践中心登记地铁站厅共创委托",
+    "payload": {
+      "project_name": "站厅里的村口——2 号线江滨站公共艺术共创",
+      "site_kind": "metro_station",
+      "site_name": "2 号线江滨站站厅",
+      "commissioning_party_ref": "party:metro-line2-company",
+      "school_practice_center_ref": "party:academy-practice-center",
+      "operator_ref": "party:metro-line2-station-ops",
+      "intended_use": "通勤者可停留、可触摸、带有街区记忆的休息与导览装置",
+      "public_visibility_default": "public"
+    }
+  },
+  {
+    "event_id": "evt-002",
+    "event_type": "BRIEF_PUBLISHED",
+    "aggregate_type": "site_commission",
+    "aggregate_id": "C-2026-001",
+    "occurred_at": "2026-09-22T15:00:00+08:00",
+    "version": 2,
+    "summary": "发布共创简报第一版，开放现场公告板与线上表单两个反馈渠道",
+    "payload": {
+      "brief_version": 1,
+      "document_ref": "doc:brief-v1",
+      "feedback_channel": ["onsite_board", "online_form"],
+      "response_deadline": "2026-10-10"
+    }
+  },
+  {
+    "event_id": "evt-003",
+    "event_type": "INPUT_CONSENTED",
+    "aggregate_type": "community_input",
+    "aggregate_id": "K-001",
+    "occurred_at": "2026-09-25T09:30:00+08:00",
+    "version": 1,
+    "summary": "通勤者陈阿姨同意访谈与街区叙事使用",
+    "payload": {
+      "participant_ref": "person:chen",
+      "participant_group": ["commuter", "resident", "elder"],
+      "consent_scope": ["interview_only", "story_use", "photo_documentation"],
+      "channel": "paper_signed",
+      "scope_summary": "仅用于本站厅共创项目的方案与展示，可摘述不公开全名",
+      "granted_at": "2026-09-25",
+      "visibility": "restricted"
+    }
+  },
+  {
+    "event_id": "evt-004",
+    "event_type": "INTERVIEW_SUMMARIZED",
+    "aggregate_type": "community_input",
+    "aggregate_id": "K-001",
+    "occurred_at": "2026-09-25T10:20:00+08:00",
+    "version": 2,
+    "summary": "记录早高峰通勤者对站厅老榕树候车点的记忆摘要",
+    "payload": {
+      "consent_id": "K-001",
+      "interview_ref": "doc:interview-chen",
+      "summary_text": "1998 年站口老榕树是通勤集合点，街坊在树下等车、交换菜种，希望装置保留可坐下等人的功能",
+      "topics": ["block_memory", "practical_use"],
+      "recorder_ref": "person:student-li",
+      "participant_checked": true,
+      "visibility": "restricted"
+    }
+  },
+  {
+    "event_id": "evt-005",
+    "event_type": "NARRATIVE_RECORDED",
+    "aggregate_type": "local_narrative",
+    "aggregate_id": "N-001",
+    "occurred_at": "2026-09-25T10:40:00+08:00",
+    "version": 1,
+    "summary": "收录“榕树候车点”街区记忆作为地方叙事",
+    "payload": {
+      "narrative_id": "N-001",
+      "consent_id": "K-001",
+      "role": "block_history",
+      "title": "榕树下等头班车",
+      "content_summary": "老榕树与早班车、邻里交换菜种的集体记忆",
+      "source_type": "interview",
+      "source_location_ref": "doc:interview-chen#p2",
+      "status": "draft",
+      "visibility": "restricted"
+    }
+  },
+  {
+    "event_id": "evt-006",
+    "event_type": "NARRATIVE_CORROBORATED",
+    "aggregate_type": "local_narrative",
+    "aggregate_id": "N-001",
+    "occurred_at": "2026-09-28T14:00:00+08:00",
+    "version": 2,
+    "summary": "另两位老居民与一张 2001 年照片佐证榕树候车点记忆",
+    "payload": {
+      "narrative_id": "N-001",
+      "corroborated_by": ["person:zhou", "person:lin", "doc:photo-2001-banyan"],
+      "note": "站点改造前老榕树位置与现 B 口一致"
+    }
+  },
+  {
+    "event_id": "evt-007",
+    "event_type": "INPUT_CONSENTED",
+    "aggregate_type": "community_input",
+    "aggregate_id": "K-002",
+    "occurred_at": "2026-09-29T11:00:00+08:00",
+    "version": 1,
+    "summary": "村民王师傅同意捐出家中旧木船板用于装置",
+    "payload": {
+      "participant_ref": "person:wang",
+      "participant_group": ["village_resident"],
+      "consent_scope": ["material_donation", "photo_documentation"],
+      "channel": "paper_signed",
+      "scope_summary": "捐赠旧木船板一块，用于站内休息装置，撤展时船板归还本人",
+      "granted_at": "2026-09-29",
+      "visibility": "restricted"
+    }
+  },
+  {
+    "event_id": "evt-008",
+    "event_type": "MATERIAL_PLEDGED",
+    "aggregate_type": "material_item",
+    "aggregate_id": "I-001",
+    "occurred_at": "2026-09-29T11:30:00+08:00",
+    "version": 1,
+    "summary": "登记拟捐旧物：王师傅家旧木船板",
+    "payload": {
+      "item_name": "旧木船板（约 1.8 米）",
+      "item_kind": "building_component",
+      "owner_ref": "person:wang",
+      "consent_id": "K-002",
+      "proposed_use": "作为休息装置坐面，嵌装于钢结构上",
+      "intended_reversibility": "partially_reversible",
+      "condition_report_ref": "doc:item-I-001-condition",
+      "photos_ref": ["media:item-I-001-a", "media:item-I-001-b"]
+    }
+  },
+  {
+    "event_id": "evt-009",
+    "event_type": "OWNERSHIP_VERIFIED",
+    "aggregate_type": "material_item",
+    "aggregate_id": "I-001",
+    "occurred_at": "2026-10-02T10:00:00+08:00",
+    "version": 2,
+    "summary": "凭村委会登记与邻里证言核验船板为王师傅家所有",
+    "payload": {
+      "item_id": "I-001",
+      "status": "ownership_verified",
+      "title_basis": "household_registered",
+      "evidence_ref": "doc:item-I-001-title",
+      "verifier_ref": "person:staff-he",
+      "note": "村委会存量资产登记可查，无第三方主张"
+    }
+  },
+  {
+    "event_id": "evt-010",
+    "event_type": "REVERSIBILITY_ASSESSED",
+    "aggregate_type": "material_item",
+    "aggregate_id": "I-001",
+    "occurred_at": "2026-10-03T10:00:00+08:00",
+    "version": 3,
+    "summary": "评估船板嵌装可逆范围，切割为不可逆、螺栓固定为可逆",
+    "payload": {
+      "item_id": "I-001",
+      "level": "partially_reversible",
+      "reversible_actions": ["螺栓固定可拆解", "表面木蜡油可打磨去除"],
+      "irreversible_actions": ["端部裁切 20 厘米"],
+      "owner_confirmed": true
+    }
+  },
+  {
+    "event_id": "evt-011",
+    "event_type": "MATERIAL_DISPOSITION_DECIDED",
+    "aggregate_type": "material_item",
+    "aggregate_id": "I-001",
+    "occurred_at": "2026-10-05T10:00:00+08:00",
+    "version": 4,
+    "summary": "签署捐赠协议，约定撤展时船板归还所有者",
+    "payload": {
+      "item_id": "I-001",
+      "decision": "donated",
+      "agreement_ref": "doc:agreement-I-001",
+      "agreed_fate_on_withdrawal": "return_to_owner",
+      "owner_signed": true
+    }
+  },
+  {
+    "event_id": "evt-012",
+    "event_type": "FEEDBACK_SUBMITTED",
+    "aggregate_type": "feedback_case",
+    "aggregate_id": "F-001",
+    "occurred_at": "2026-10-04T08:15:00+08:00",
+    "version": 1,
+    "summary": "轮椅通勤者提出休息装置须留出 1.2 米回转空间并降低坐面高度",
+    "payload": {
+      "submitter_ref": "person:accessible-user-a",
+      "channel": "onsite_board",
+      "topic": ["accessibility", "practical_use", "safety"],
+      "content_summary": "装置若占满墙面通道，轮椅无法在靠近电梯处掉头；坐面 45cm 太高无法独立平移",
+      "related_narrative_ids": [],
+      "related_revision_ids": [],
+      "visibility": "public"
+    }
+  },
+  {
+    "event_id": "evt-013",
+    "event_type": "FEEDBACK_TRIAGED",
+    "aggregate_type": "feedback_case",
+    "aggregate_id": "F-001",
+    "occurred_at": "2026-10-04T12:00:00+08:00",
+    "version": 2,
+    "summary": "识别为无障碍使用者异议，标记须单独回应",
+    "payload": {
+      "feedback_id": "F-001",
+      "representative_status": "minority_or_accessibility_dissent",
+      "triage_note": "涉及《无障碍设计规范》通道与坐高，不以点赞数决定取舍",
+      "separate_response_required": true
+    }
+  },
+  {
+    "event_id": "evt-014",
+    "event_type": "FEEDBACK_SUBMITTED",
+    "aggregate_type": "feedback_case",
+    "aggregate_id": "F-002",
+    "occurred_at": "2026-10-05T19:00:00+08:00",
+    "version": 1,
+    "summary": "通勤者建议把装置整体刷成大红色更醒目",
+    "payload": {
+      "channel": "online_form",
+      "topic": ["aesthetics"],
+      "content_summary": "建议大红色涂装，远处可见",
+      "visibility": "public"
+    }
+  },
+  {
+    "event_id": "evt-015",
+    "event_type": "FEEDBACK_TRIAGED",
+    "aggregate_type": "feedback_case",
+    "aggregate_id": "F-002",
+    "occurred_at": "2026-10-06T09:00:00+08:00",
+    "version": 2,
+    "summary": "识别为个人审美意见",
+    "payload": {
+      "feedback_id": "F-002",
+      "representative_status": "individual_opinion"
+    }
+  },
+  {
+    "event_id": "evt-016",
+    "event_type": "FEEDBACK_SUBMITTED",
+    "aggregate_type": "feedback_case",
+    "aggregate_id": "F-003",
+    "occurred_at": "2026-10-06T10:00:00+08:00",
+    "version": 1,
+    "summary": "收到要求在站内刻画贬损某地名绰号的建议",
+    "payload": {
+      "channel": "online_form",
+      "topic": ["discrimination_concern"],
+      "content_summary": "建议将对邻村的贬损绰号刻入坐面",
+      "visibility": "public"
+    }
+  },
+  {
+    "event_id": "evt-017",
+    "event_type": "FEEDBACK_TRIAGED",
+    "aggregate_type": "feedback_case",
+    "aggregate_id": "F-003",
+    "occurred_at": "2026-10-06T11:00:00+08:00",
+    "version": 2,
+    "summary": "识别为涉嫌歧视的个人建议",
+    "payload": {
+      "feedback_id": "F-003",
+      "representative_status": "individual_opinion",
+      "triage_note": "涉嫌地域歧视，提交创作组评估拒绝"
+    }
+  },
+  {
+    "event_id": "evt-018",
+    "event_type": "DESIGN_DRAFTED",
+    "aggregate_type": "design_revision",
+    "aggregate_id": "R-001",
+    "occurred_at": "2026-10-08T16:00:00+08:00",
+    "version": 1,
+    "summary": "方案初稿：榕树轮廓墙与可坐船板装置",
+    "payload": {
+      "revision_no": 1,
+      "stage": "concept_draft",
+      "document_ref": "doc:design-R-001-v1",
+      "incorporated_narrative_ids": ["N-001"],
+      "incorporated_feedback_ids": [],
+      "safety_review": "not_required",
+      "creators": ["person:student-li", "person:student-zhao"]
+    }
+  },
+  {
+    "event_id": "evt-019",
+    "event_type": "DESIGN_RESPONDED",
+    "aggregate_type": "design_revision",
+    "aggregate_id": "R-001",
+    "occurred_at": "2026-10-10T16:00:00+08:00",
+    "version": 2,
+    "summary": "据无障碍异议调整通道与坐高；大红色涂装未采纳并说明原因",
+    "payload": {
+      "revision_id": "R-001",
+      "change_kind": "response_to_feedback",
+      "change_summary": "装置整体内移 40 厘米留出 1.2 米回转通道；增设 40 厘米高度可平移坐面；涂装改为木原色",
+      "feedback_ids_addressed": ["F-001"],
+      "feedback_ids_not_adopted": ["F-002"],
+      "not_adopted_reasons": {
+        "F-002": "站厅导视系统以红色为安全警示色，大面积红会干扰应急疏散识别，且与船板旧物质感冲突"
+      },
+      "new_revision_no": 2
+    }
+  },
+  {
+    "event_id": "evt-020",
+    "event_type": "FEEDBACK_RESPONDED",
+    "aggregate_type": "feedback_case",
+    "aggregate_id": "F-001",
+    "occurred_at": "2026-10-10T17:00:00+08:00",
+    "version": 3,
+    "summary": "公开回应无障碍异议：已在方案中落实通道与坐高修改",
+    "payload": {
+      "feedback_id": "F-001",
+      "disposition": "accepted_adopted",
+      "response_summary": "已内移装置并增加低位坐面，欢迎在施工图阶段现场试用复核",
+      "reflected_in_revision_id": "R-001",
+      "responded_by_ref": "person:teacher-gu",
+      "public_reply": true
+    }
+  },
+  {
+    "event_id": "evt-021",
+    "event_type": "FEEDBACK_RESPONDED",
+    "aggregate_type": "feedback_case",
+    "aggregate_id": "F-002",
+    "occurred_at": "2026-10-10T17:30:00+08:00",
+    "version": 3,
+    "summary": "回应大红色建议：未采纳，公开说明疏散识别与材质理由",
+    "payload": {
+      "feedback_id": "F-002",
+      "disposition": "noted_no_change",
+      "response_summary": "感谢建议；红色在本站厅为安全警示色，大面积使用会干扰疏散识别，故保留木原色",
+      "responded_by_ref": "person:teacher-gu",
+      "public_reply": true
+    }
+  },
+  {
+    "event_id": "evt-022",
+    "event_type": "UNSAFE_OR_DISCRIMINATORY_INPUT_REJECTED",
+    "aggregate_type": "design_revision",
+    "aggregate_id": "R-001",
+    "occurred_at": "2026-10-11T09:00:00+08:00",
+    "version": 3,
+    "summary": "创作组拒绝刻入贬损绰号的建议并说明依据",
+    "payload": {
+      "source_feedback_id": "F-003",
+      "refusal_kind": "discriminatory_content",
+      "basis": "内容含地域歧视称谓，违反项目共创准则中尊重地名与群体的要求，也不符合公序良俗",
+      "regulation_or_standard_ref": "doc:cocreation-code#clause-3",
+      "alternative_offered": "可用经叙事核验的老地名与榕树记忆替代表达",
+      "decided_by_ref": "person:teacher-gu"
+    }
+  },
+  {
+    "event_id": "evt-023",
+    "event_type": "FEEDBACK_RESPONDED",
+    "aggregate_type": "feedback_case",
+    "aggregate_id": "F-003",
+    "occurred_at": "2026-10-11T09:30:00+08:00",
+    "version": 3,
+    "summary": "向建议人公开说明拒绝依据与替代方案",
+    "payload": {
+      "feedback_id": "F-003",
+      "disposition": "rejected_creator",
+      "response_summary": "该称谓具有歧视性，不能用于公共空间作品；可改用经核验的老地名表达",
+      "refusal_basis": "共创准则第 3 条与公序良俗要求",
+      "responded_by_ref": "person:teacher-gu",
+      "public_reply": true
+    }
+  },
+  {
+    "event_id": "evt-024",
+    "event_type": "DESIGN_FROZEN_FOR_BUILD",
+    "aggregate_type": "design_revision",
+    "aggregate_id": "R-001",
+    "occurred_at": "2026-10-18T15:00:00+08:00",
+    "version": 4,
+    "summary": "安全评审通过，冻结施工版本",
+    "payload": {
+      "revision_id": "R-001",
+      "safety_review_result": "passed",
+      "accessibility_check_ref": "doc:accessibility-check-R-001",
+      "approver_refs": ["person:teacher-gu", "person:metro-safety-qian"]
+    }
+  },
+  {
+    "event_id": "evt-025",
+    "event_type": "MINOR_CONSENT_GRANTED",
+    "aggregate_type": "minor_participation",
+    "aggregate_id": "MC-001",
+    "occurred_at": "2026-10-12T14:00:00+08:00",
+    "version": 1,
+    "summary": "附近小学学生在监护人会签同意后参与榕树图案拓印工作坊",
+    "payload": {
+      "minor_consent_id": "MC-001",
+      "guardian_ref": "person:guardian-group-g3",
+      "school_or_org_ref": "party:binjiang-primary",
+      "activity_scope": ["拓印工作坊", "图案用于装置蚀刻", "集体署名"],
+      "agreed_outputs": ["榕树纹理蚀刻图案", "工作坊记录照片（校内存档）"],
+      "signed_agreement_ref": "doc:minor-consent-MC-001",
+      "consent_channel": "guardian_counter_signed",
+      "expires_at": "2027-10-12"
+    }
+  },
+  {
+    "event_id": "evt-026",
+    "event_type": "MINOR_WORK_INCORPORATED",
+    "aggregate_type": "minor_participation",
+    "aggregate_id": "MC-001",
+    "occurred_at": "2026-10-15T11:00:00+08:00",
+    "version": 2,
+    "summary": "儿童拓印的榕树纹理以集体名义纳入方案蚀刻图案",
+    "payload": {
+      "minor_consent_id": "MC-001",
+      "work_description": "六名学生拓印的榕树气根纹理，整合为侧板蚀刻线稿",
+      "revision_id": "R-001",
+      "treatment": "抽象化整合，不出现可识别个人形象与全名",
+      "credit_preference": "collective_name"
+    }
+  },
+  {
+    "event_id": "evt-027",
+    "event_type": "BUDGET_ALLOCATED",
+    "aggregate_type": "budget_case",
+    "aggregate_id": "B-001",
+    "occurred_at": "2026-10-08T10:00:00+08:00",
+    "version": 1,
+    "summary": "登记项目预算与来源",
+    "payload": {
+      "total_amount": 86000,
+      "currency": "CNY",
+      "funding_sources": ["party:metro-line2-company", "party:academy-practice-center"],
+      "earmark": { "fabrication": 52000, "accessibility_facility": 12000, "documentation": 6000 },
+      "document_ref": "doc:budget-B-001"
+    }
+  },
+  {
+    "event_id": "evt-028",
+    "event_type": "PROCUREMENT_RECORDED",
+    "aggregate_type": "budget_case",
+    "aggregate_id": "B-001",
+    "occurred_at": "2026-10-20T10:00:00+08:00",
+    "version": 2,
+    "summary": "记录钢结构与无障碍低位坐面加工采购",
+    "payload": {
+      "kind": "fabrication",
+      "vendor_ref": "party:fabricator-hengxin",
+      "amount": 48000,
+      "currency": "CNY",
+      "invoice_ref": "doc:invoice-hx-2026-11",
+      "linked_revision_id": "R-001"
+    }
+  },
+  {
+    "event_id": "evt-029",
+    "event_type": "DONATED_ITEM_VALUED",
+    "aggregate_type": "budget_case",
+    "aggregate_id": "B-001",
+    "occurred_at": "2026-10-20T11:00:00+08:00",
+    "version": 3,
+    "summary": "捐赠船板按名义价值零元入账并出具捐赠凭据",
+    "payload": {
+      "material_item_id": "I-001",
+      "nominal_value": 0,
+      "currency": "CNY",
+      "valuation_note": "家庭旧物捐赠，按名义价值入账，不计采购",
+      "tax_or_receipt_ref": "doc:donation-receipt-I-001"
+    }
+  },
+  {
+    "event_id": "evt-030",
+    "event_type": "INSTALLATION_STARTED",
+    "aggregate_type": "installation_work",
+    "aggregate_id": "INST-001",
+    "occurred_at": "2026-10-25T22:30:00+08:00",
+    "version": 1,
+    "summary": "夜间停运后开始现场安装，使用已确权船板 I-001",
+    "payload": {
+      "revision_id": "R-001",
+      "fabricator_ref": "party:fabricator-hengxin",
+      "site_contact_ref": "person:metro-safety-qian",
+      "safety_measures": ["barrier", "signage", "electrical_safety", "accessibility_passage"],
+      "material_item_ids": ["I-001"],
+      "start_date": "2026-10-25"
+    }
+  },
+  {
+    "event_id": "evt-031",
+    "event_type": "INSTALLATION_ACCEPTED",
+    "aggregate_type": "installation_work",
+    "aggregate_id": "INST-001",
+    "occurred_at": "2026-10-29T11:00:00+08:00",
+    "version": 2,
+    "summary": "四方验收通过，形成作品资产 W-001",
+    "payload": {
+      "work_asset_id": "W-001",
+      "revision_id": "R-001",
+      "result": "accepted",
+      "rectification_items": [],
+      "acceptor_refs": ["person:teacher-gu", "person:metro-safety-qian", "person:station-director", "person:accessible-user-a"],
+      "as_built_doc_ref": "doc:as-built-W-001",
+      "warranty_until": "2028-10-29"
+    }
+  },
+  {
+    "event_id": "evt-032",
+    "event_type": "CREDIT_PREFERENCE_RECORDED",
+    "aggregate_type": "credit_publication",
+    "aggregate_id": "CRED-001",
+    "occurred_at": "2026-10-29T14:00:00+08:00",
+    "version": 1,
+    "summary": "记录主创学生署名意愿：实名",
+    "payload": {
+      "person_ref": "person:student-li",
+      "role": "lead_creator",
+      "display": "named",
+      "display_name": "李（美院社会实践工作室）",
+      "scope": ["plaque", "online_publication"]
+    }
+  },
+  {
+    "event_id": "evt-033",
+    "event_type": "CREDIT_PREFERENCE_RECORDED",
+    "aggregate_type": "credit_publication",
+    "aggregate_id": "CRED-002",
+    "occurred_at": "2026-10-29T14:10:00+08:00",
+    "version": 1,
+    "summary": "儿童参与者按会签意愿以集体名义署名",
+    "payload": {
+      "person_ref": "party:binjiang-primary-workshop-g3",
+      "role": "child_participant",
+      "display": "collective_name",
+      "display_name": "滨江小学榕树工作坊",
+      "scope": ["plaque"]
+    }
+  },
+  {
+    "event_id": "evt-034",
+    "event_type": "WORK_PUBLISHED",
+    "aggregate_type": "credit_publication",
+    "aggregate_id": "PUB-001",
+    "occurred_at": "2026-11-02T10:00:00+08:00",
+    "version": 1,
+    "summary": "作品向公众发布，公开反馈采纳说明与署名",
+    "payload": {
+      "work_asset_id": "W-001",
+      "revision_id": "R-001",
+      "audience": "public",
+      "channels": ["station_plaque", "practice_center_site"],
+      "credit_line_ref": "doc:credit-W-001",
+      "narrative_attribution_refs": ["N-001"],
+      "includes_minor_work": true
+    }
+  },
+  {
+    "event_id": "evt-035",
+    "event_type": "MAINTENANCE_ASSIGNED",
+    "aggregate_type": "maintenance_obligation",
+    "aggregate_id": "M-001",
+    "occurred_at": "2026-11-02T11:00:00+08:00",
+    "version": 1,
+    "summary": "养护责任先由美院实践中心承担两年，站务为后备联系人",
+    "payload": {
+      "work_asset_id": "W-001",
+      "caretaker_kind": "school_practice_center",
+      "caretaker_ref": "party:academy-practice-center",
+      "duties": ["每季度巡检", "木面保养", "结构松动紧固", "撤展时船板归还协调"],
+      "cadence_days": 90,
+      "valid_from": "2026-11-02",
+      "valid_until": "2028-11-02",
+      "backup_caretaker_ref": "party:metro-line2-station-ops",
+      "agreement_ref": "doc:maintenance-M-001"
+    }
+  },
+  {
+    "event_id": "evt-036",
+    "event_type": "INSPECTION_LOGGED",
+    "aggregate_type": "inspection_case",
+    "aggregate_id": "IN-001",
+    "occurred_at": "2027-02-10T10:00:00+08:00",
+    "version": 1,
+    "summary": "首次季度巡检：正常",
+    "payload": {
+      "work_asset_id": "W-001",
+      "inspector_ref": "person:student-zhao",
+      "result": "normal",
+      "findings_summary": "螺栓无松动，木面无开裂，通道净宽保持 1.2 米",
+      "evidence_refs": ["media:insp-IN-001-a"],
+      "next_due_at": "2027-05-10"
+    }
+  },
+  {
+    "event_id": "evt-037",
+    "event_type": "INSPECTION_LOGGED",
+    "aggregate_type": "inspection_case",
+    "aggregate_id": "IN-002",
+    "occurred_at": "2027-05-12T10:30:00+08:00",
+    "version": 1,
+    "summary": "巡检发现坐面钢木结构连接处焊缝开裂，初判施工质量问题",
+    "payload": {
+      "work_asset_id": "W-001",
+      "inspector_ref": "person:staff-he",
+      "result": "damage_construction",
+      "findings_summary": "坐面左侧焊缝开裂约 6 厘米，船板本体完好；开裂位置为现场焊接节点",
+      "evidence_refs": ["media:insp-IN-002-a", "media:insp-IN-002-b"],
+      "next_due_at": "2027-05-26"
+    }
+  },
+  {
+    "event_id": "evt-038",
+    "event_type": "REPAIR_OPENED",
+    "aggregate_type": "repair_case",
+    "aggregate_id": "RP-001",
+    "occurred_at": "2027-05-12T11:00:00+08:00",
+    "version": 1,
+    "summary": "对焊缝开裂立案修复",
+    "payload": {
+      "work_asset_id": "W-001",
+      "inspection_id": "IN-002",
+      "damage_description": "坐面左侧现场焊缝开裂，存在坐面倾翻风险",
+      "urgency": "high"
+    }
+  },
+  {
+    "event_id": "evt-039",
+    "event_type": "DAMAGE_LIABILITY_DETERMINED",
+    "aggregate_type": "repair_case",
+    "aggregate_id": "RP-001",
+    "occurred_at": "2027-05-15T10:00:00+08:00",
+    "version": 2,
+    "summary": "认定为施工责任，质保期内由承包方承担",
+    "payload": {
+      "repair_id": "RP-001",
+      "category": "construction_liability",
+      "liable_party": "fabricator",
+      "basis": "开裂为现场焊接未焊透，竣工质保至 2028-10-29；设计节点验算合格，非设计缺陷，亦非自然损耗",
+      "evidence_refs": ["doc:weld-inspection-RP-001", "doc:as-built-W-001"],
+      "warranty_applied": true
+    }
+  },
+  {
+    "event_id": "evt-040",
+    "event_type": "REPAIR_COMPLETED",
+    "aggregate_type": "repair_case",
+    "aggregate_id": "RP-001",
+    "occurred_at": "2027-05-20T16:00:00+08:00",
+    "version": 3,
+    "summary": "承包方重新焊接并探伤合格，船板可逆拆解后原样装回",
+    "payload": {
+      "repair_id": "RP-001",
+      "actions": ["设置临时围挡", "可逆拆解船板坐面", "清除缺陷焊缝重新满焊", "焊缝探伤检测", "船板原样装回并复测通道净宽"],
+      "cost": 0,
+      "currency": "CNY",
+      "repaired_by_ref": "party:fabricator-hengxin",
+      "reversibility_preserved": true,
+      "acceptor_ref": "person:staff-he"
+    }
+  },
+  {
+    "event_id": "evt-041",
+    "event_type": "MAINTENANCE_HANDOFF",
+    "aggregate_type": "maintenance_obligation",
+    "aggregate_id": "M-001",
+    "occurred_at": "2028-06-30T10:00:00+08:00",
+    "version": 2,
+    "summary": "学生陆续毕业，养护责任移交站务运营单位，完整版本记录一并移交",
+    "payload": {
+      "obligation_id": "M-001",
+      "kind": "student_graduation",
+      "outgoing_ref": "party:academy-practice-center",
+      "incoming_caretaker_kind": "operator",
+      "incoming_ref": "party:metro-line2-station-ops",
+      "handed_over_records": ["doc:as-built-W-001", "doc:maintenance-M-001", "doc:agreement-I-001", "stream:C-2026-001"],
+      "effective_at": "2028-07-01"
+    }
+  }
+]

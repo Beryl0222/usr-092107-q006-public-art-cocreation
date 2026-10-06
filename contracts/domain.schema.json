@@ -1,7 +1,660 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "公共艺术共创履约簿领域事件",
+  "description": "事件只追加、不可原地改写；更正使用后继的 RECORD_CORRECTED。跨记录的履约门控（权属先于改造、异议单独回应等）由 src/validator.js 的 validateStream 校验。",
   "type": "object",
+  "oneOf": [
+    {
+      "properties": {
+        "event_type": {
+          "const": "COMMISSION_OPENED"
+        },
+        "aggregate_type": {
+          "const": "site_commission"
+        },
+        "payload": {
+          "$ref": "#/$defs/site_commission__COMMISSION_OPENED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "BRIEF_PUBLISHED"
+        },
+        "aggregate_type": {
+          "const": "site_commission"
+        },
+        "payload": {
+          "$ref": "#/$defs/site_commission__BRIEF_PUBLISHED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "SCOPE_CHANGED"
+        },
+        "aggregate_type": {
+          "const": "site_commission"
+        },
+        "payload": {
+          "$ref": "#/$defs/site_commission__SCOPE_CHANGED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "COMMISSION_SUSPENDED"
+        },
+        "aggregate_type": {
+          "const": "site_commission"
+        },
+        "payload": {
+          "$ref": "#/$defs/site_commission__COMMISSION_SUSPENDED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "COMMISSION_WITHDRAWN"
+        },
+        "aggregate_type": {
+          "const": "site_commission"
+        },
+        "payload": {
+          "$ref": "#/$defs/site_commission__COMMISSION_WITHDRAWN"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "INPUT_CONSENTED"
+        },
+        "aggregate_type": {
+          "const": "community_input"
+        },
+        "payload": {
+          "$ref": "#/$defs/community_input__INPUT_CONSENTED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "INTERVIEW_SUMMARIZED"
+        },
+        "aggregate_type": {
+          "const": "community_input"
+        },
+        "payload": {
+          "$ref": "#/$defs/community_input__INTERVIEW_SUMMARIZED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "CONSENT_WITHDRAWN"
+        },
+        "aggregate_type": {
+          "const": "community_input"
+        },
+        "payload": {
+          "$ref": "#/$defs/community_input__CONSENT_WITHDRAWN"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "CONSENT_EXPIRED"
+        },
+        "aggregate_type": {
+          "const": "community_input"
+        },
+        "payload": {
+          "$ref": "#/$defs/community_input__CONSENT_EXPIRED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "CONSENT_SCOPE_EXTENDED"
+        },
+        "aggregate_type": {
+          "const": "community_input"
+        },
+        "payload": {
+          "$ref": "#/$defs/community_input__CONSENT_SCOPE_EXTENDED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "NARRATIVE_RECORDED"
+        },
+        "aggregate_type": {
+          "const": "local_narrative"
+        },
+        "payload": {
+          "$ref": "#/$defs/local_narrative__NARRATIVE_RECORDED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "NARRATIVE_CORROBORATED"
+        },
+        "aggregate_type": {
+          "const": "local_narrative"
+        },
+        "payload": {
+          "$ref": "#/$defs/local_narrative__NARRATIVE_CORROBORATED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "NARRATIVE_DISPUTED"
+        },
+        "aggregate_type": {
+          "const": "local_narrative"
+        },
+        "payload": {
+          "$ref": "#/$defs/local_narrative__NARRATIVE_DISPUTED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "NARRATIVE_RETRACTED"
+        },
+        "aggregate_type": {
+          "const": "local_narrative"
+        },
+        "payload": {
+          "$ref": "#/$defs/local_narrative__NARRATIVE_RETRACTED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "FEEDBACK_SUBMITTED"
+        },
+        "aggregate_type": {
+          "const": "feedback_case"
+        },
+        "payload": {
+          "$ref": "#/$defs/feedback_case__FEEDBACK_SUBMITTED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "FEEDBACK_TRIAGED"
+        },
+        "aggregate_type": {
+          "const": "feedback_case"
+        },
+        "payload": {
+          "$ref": "#/$defs/feedback_case__FEEDBACK_TRIAGED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "FEEDBACK_RESPONDED"
+        },
+        "aggregate_type": {
+          "const": "feedback_case"
+        },
+        "payload": {
+          "$ref": "#/$defs/feedback_case__FEEDBACK_RESPONDED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "FEEDBACK_RESPONSE_ESCALATED"
+        },
+        "aggregate_type": {
+          "const": "feedback_case"
+        },
+        "payload": {
+          "$ref": "#/$defs/feedback_case__FEEDBACK_RESPONSE_ESCALATED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "DESIGN_DRAFTED"
+        },
+        "aggregate_type": {
+          "const": "design_revision"
+        },
+        "payload": {
+          "$ref": "#/$defs/design_revision__DESIGN_DRAFTED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "DESIGN_RESPONDED"
+        },
+        "aggregate_type": {
+          "const": "design_revision"
+        },
+        "payload": {
+          "$ref": "#/$defs/design_revision__DESIGN_RESPONDED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "UNSAFE_OR_DISCRIMINATORY_INPUT_REJECTED"
+        },
+        "aggregate_type": {
+          "const": "design_revision"
+        },
+        "payload": {
+          "$ref": "#/$defs/design_revision__UNSAFE_OR_DISCRIMINATORY_INPUT_REJECTED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "DESIGN_FROZEN_FOR_BUILD"
+        },
+        "aggregate_type": {
+          "const": "design_revision"
+        },
+        "payload": {
+          "$ref": "#/$defs/design_revision__DESIGN_FROZEN_FOR_BUILD"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "MATERIAL_PLEDGED"
+        },
+        "aggregate_type": {
+          "const": "material_item"
+        },
+        "payload": {
+          "$ref": "#/$defs/material_item__MATERIAL_PLEDGED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "OWNERSHIP_VERIFIED"
+        },
+        "aggregate_type": {
+          "const": "material_item"
+        },
+        "payload": {
+          "$ref": "#/$defs/material_item__OWNERSHIP_VERIFIED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "REVERSIBILITY_ASSESSED"
+        },
+        "aggregate_type": {
+          "const": "material_item"
+        },
+        "payload": {
+          "$ref": "#/$defs/material_item__REVERSIBILITY_ASSESSED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "MATERIAL_DISPOSITION_DECIDED"
+        },
+        "aggregate_type": {
+          "const": "material_item"
+        },
+        "payload": {
+          "$ref": "#/$defs/material_item__MATERIAL_DISPOSITION_DECIDED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "MATERIAL_RECALLED"
+        },
+        "aggregate_type": {
+          "const": "material_item"
+        },
+        "payload": {
+          "$ref": "#/$defs/material_item__MATERIAL_RECALLED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "WORK_WITHDRAWN_FROM_DISPLAY"
+        },
+        "aggregate_type": {
+          "const": "material_item"
+        },
+        "payload": {
+          "$ref": "#/$defs/material_item__WORK_WITHDRAWN_FROM_DISPLAY"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "MINOR_CONSENT_GRANTED"
+        },
+        "aggregate_type": {
+          "const": "minor_participation"
+        },
+        "payload": {
+          "$ref": "#/$defs/minor_participation__MINOR_CONSENT_GRANTED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "MINOR_WORK_INCORPORATED"
+        },
+        "aggregate_type": {
+          "const": "minor_participation"
+        },
+        "payload": {
+          "$ref": "#/$defs/minor_participation__MINOR_WORK_INCORPORATED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "MINOR_CONSENT_WITHDRAWN"
+        },
+        "aggregate_type": {
+          "const": "minor_participation"
+        },
+        "payload": {
+          "$ref": "#/$defs/minor_participation__MINOR_CONSENT_WITHDRAWN"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "BUDGET_ALLOCATED"
+        },
+        "aggregate_type": {
+          "const": "budget_case"
+        },
+        "payload": {
+          "$ref": "#/$defs/budget_case__BUDGET_ALLOCATED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "BUDGET_CHANGED"
+        },
+        "aggregate_type": {
+          "const": "budget_case"
+        },
+        "payload": {
+          "$ref": "#/$defs/budget_case__BUDGET_CHANGED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "PROCUREMENT_RECORDED"
+        },
+        "aggregate_type": {
+          "const": "budget_case"
+        },
+        "payload": {
+          "$ref": "#/$defs/budget_case__PROCUREMENT_RECORDED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "DONATED_ITEM_VALUED"
+        },
+        "aggregate_type": {
+          "const": "budget_case"
+        },
+        "payload": {
+          "$ref": "#/$defs/budget_case__DONATED_ITEM_VALUED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "INSTALLATION_STARTED"
+        },
+        "aggregate_type": {
+          "const": "installation_work"
+        },
+        "payload": {
+          "$ref": "#/$defs/installation_work__INSTALLATION_STARTED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "CONSTRUCTION_INCIDENT_RECORDED"
+        },
+        "aggregate_type": {
+          "const": "installation_work"
+        },
+        "payload": {
+          "$ref": "#/$defs/installation_work__CONSTRUCTION_INCIDENT_RECORDED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "INSTALLATION_ACCEPTED"
+        },
+        "aggregate_type": {
+          "const": "installation_work"
+        },
+        "payload": {
+          "$ref": "#/$defs/installation_work__INSTALLATION_ACCEPTED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "CREDIT_PREFERENCE_RECORDED"
+        },
+        "aggregate_type": {
+          "const": "credit_publication"
+        },
+        "payload": {
+          "$ref": "#/$defs/credit_publication__CREDIT_PREFERENCE_RECORDED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "WORK_PUBLISHED"
+        },
+        "aggregate_type": {
+          "const": "credit_publication"
+        },
+        "payload": {
+          "$ref": "#/$defs/credit_publication__WORK_PUBLISHED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "PUBLICATION_TAKEN_DOWN"
+        },
+        "aggregate_type": {
+          "const": "credit_publication"
+        },
+        "payload": {
+          "$ref": "#/$defs/credit_publication__PUBLICATION_TAKEN_DOWN"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "MAINTENANCE_ASSIGNED"
+        },
+        "aggregate_type": {
+          "const": "maintenance_obligation"
+        },
+        "payload": {
+          "$ref": "#/$defs/maintenance_obligation__MAINTENANCE_ASSIGNED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "MAINTENANCE_HANDOFF"
+        },
+        "aggregate_type": {
+          "const": "maintenance_obligation"
+        },
+        "payload": {
+          "$ref": "#/$defs/maintenance_obligation__MAINTENANCE_HANDOFF"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "OBLIGATION_STATUS_CHANGED"
+        },
+        "aggregate_type": {
+          "const": "maintenance_obligation"
+        },
+        "payload": {
+          "$ref": "#/$defs/maintenance_obligation__OBLIGATION_STATUS_CHANGED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "INSPECTION_LOGGED"
+        },
+        "aggregate_type": {
+          "const": "inspection_case"
+        },
+        "payload": {
+          "$ref": "#/$defs/inspection_case__INSPECTION_LOGGED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "REPAIR_OPENED"
+        },
+        "aggregate_type": {
+          "const": "repair_case"
+        },
+        "payload": {
+          "$ref": "#/$defs/repair_case__REPAIR_OPENED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "DAMAGE_LIABILITY_DETERMINED"
+        },
+        "aggregate_type": {
+          "const": "repair_case"
+        },
+        "payload": {
+          "$ref": "#/$defs/repair_case__DAMAGE_LIABILITY_DETERMINED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "REPAIR_COMPLETED"
+        },
+        "aggregate_type": {
+          "const": "repair_case"
+        },
+        "payload": {
+          "$ref": "#/$defs/repair_case__REPAIR_COMPLETED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "REPAIR_DISPUTED"
+        },
+        "aggregate_type": {
+          "const": "repair_case"
+        },
+        "payload": {
+          "$ref": "#/$defs/repair_case__REPAIR_DISPUTED"
+        }
+      }
+    },
+    {
+      "properties": {
+        "event_type": {
+          "const": "RECORD_CORRECTED"
+        },
+        "aggregate_type": {
+          "const": "correction_record"
+        },
+        "payload": {
+          "$ref": "#/$defs/correction_record__RECORD_CORRECTED"
+        }
+      }
+    }
+  ],
   "required": [
     "event_id",
     "event_type",
@@ -9,7 +662,8 @@
     "aggregate_id",
     "occurred_at",
     "version",
-    "summary"
+    "summary",
+    "payload"
   ],
   "properties": {
     "event_id": {
@@ -17,22 +671,75 @@
       "minLength": 1
     },
     "event_type": {
-      "type": "string",
       "enum": [
         "COMMISSION_OPENED",
+        "BRIEF_PUBLISHED",
+        "SCOPE_CHANGED",
+        "COMMISSION_SUSPENDED",
+        "COMMISSION_WITHDRAWN",
         "INPUT_CONSENTED",
+        "INTERVIEW_SUMMARIZED",
+        "CONSENT_WITHDRAWN",
+        "CONSENT_EXPIRED",
+        "CONSENT_SCOPE_EXTENDED",
+        "NARRATIVE_RECORDED",
+        "NARRATIVE_CORROBORATED",
+        "NARRATIVE_DISPUTED",
+        "NARRATIVE_RETRACTED",
+        "FEEDBACK_SUBMITTED",
+        "FEEDBACK_TRIAGED",
+        "FEEDBACK_RESPONDED",
+        "FEEDBACK_RESPONSE_ESCALATED",
+        "DESIGN_DRAFTED",
         "DESIGN_RESPONDED",
+        "UNSAFE_OR_DISCRIMINATORY_INPUT_REJECTED",
+        "DESIGN_FROZEN_FOR_BUILD",
+        "MATERIAL_PLEDGED",
+        "OWNERSHIP_VERIFIED",
+        "REVERSIBILITY_ASSESSED",
+        "MATERIAL_DISPOSITION_DECIDED",
+        "MATERIAL_RECALLED",
+        "WORK_WITHDRAWN_FROM_DISPLAY",
+        "MINOR_CONSENT_GRANTED",
+        "MINOR_WORK_INCORPORATED",
+        "MINOR_CONSENT_WITHDRAWN",
+        "BUDGET_ALLOCATED",
+        "BUDGET_CHANGED",
+        "PROCUREMENT_RECORDED",
+        "DONATED_ITEM_VALUED",
+        "INSTALLATION_STARTED",
+        "CONSTRUCTION_INCIDENT_RECORDED",
         "INSTALLATION_ACCEPTED",
-        "MAINTENANCE_ASSIGNED"
+        "CREDIT_PREFERENCE_RECORDED",
+        "WORK_PUBLISHED",
+        "PUBLICATION_TAKEN_DOWN",
+        "MAINTENANCE_ASSIGNED",
+        "MAINTENANCE_HANDOFF",
+        "OBLIGATION_STATUS_CHANGED",
+        "INSPECTION_LOGGED",
+        "REPAIR_OPENED",
+        "DAMAGE_LIABILITY_DETERMINED",
+        "REPAIR_COMPLETED",
+        "REPAIR_DISPUTED",
+        "RECORD_CORRECTED"
       ]
     },
     "aggregate_type": {
-      "type": "string",
       "enum": [
         "site_commission",
         "community_input",
+        "local_narrative",
+        "feedback_case",
         "design_revision",
-        "maintenance_obligation"
+        "material_item",
+        "minor_participation",
+        "budget_case",
+        "installation_work",
+        "credit_publication",
+        "maintenance_obligation",
+        "inspection_case",
+        "repair_case",
+        "correction_record"
       ]
     },
     "aggregate_id": {
@@ -50,7 +757,2108 @@
     "summary": {
       "type": "string",
       "minLength": 1
+    },
+    "replaces_event_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "payload": {
+      "type": "object"
     }
   },
-  "additionalProperties": true
+  "$defs": {
+    "enums": {
+      "site_kind": {
+        "enum": [
+          "metro_station",
+          "village",
+          "other_public_space"
+        ]
+      },
+      "commission_status": {
+        "enum": [
+          "opened",
+          "brief_published",
+          "scope_changed",
+          "completed",
+          "suspended",
+          "withdrawn"
+        ]
+      },
+      "scope_change_reason": {
+        "enum": [
+          "site_condition",
+          "community_request",
+          "safety",
+          "budget",
+          "curatorial",
+          "other"
+        ]
+      },
+      "participant_group": {
+        "enum": [
+          "commuter",
+          "resident",
+          "village_resident",
+          "merchant",
+          "elder",
+          "minor",
+          "accessibility_user",
+          "local_storyteller",
+          "school_member",
+          "operator",
+          "other"
+        ]
+      },
+      "consent_scope": {
+        "enum": [
+          "interview_only",
+          "story_use",
+          "likeness_use",
+          "child_participation",
+          "material_donation",
+          "material_loan",
+          "photo_documentation",
+          "public_display"
+        ]
+      },
+      "consent_status": {
+        "enum": [
+          "granted",
+          "refused",
+          "withdrawn",
+          "expired"
+        ]
+      },
+      "consent_channel": {
+        "enum": [
+          "paper_signed",
+          "electronic",
+          "guardian_counter_signed",
+          "oral_with_witness"
+        ]
+      },
+      "narrativity_status": {
+        "enum": [
+          "draft",
+          "verified",
+          "disputed",
+          "retracted"
+        ]
+      },
+      "narrative_role": {
+        "enum": [
+          "personal_memory",
+          "block_history",
+          "place_name_origin",
+          "oral_tradition",
+          "use_expectation",
+          "other"
+        ]
+      },
+      "feedback_channel": {
+        "enum": [
+          "onsite_board",
+          "public_meeting",
+          "online_form",
+          "interview",
+          "workshop",
+          "mail"
+        ]
+      },
+      "visibility_level": {
+        "enum": [
+          "public",
+          "restricted",
+          "private"
+        ]
+      },
+      "representative_status": {
+        "enum": [
+          "pending_triage",
+          "individual_opinion",
+          "group_position",
+          "minority_or_accessibility_dissent",
+          "duplicate",
+          "out_of_scope"
+        ]
+      },
+      "feedback_topic": {
+        "enum": [
+          "block_memory",
+          "practical_use",
+          "safety",
+          "accessibility",
+          "maintenance",
+          "aesthetics",
+          "discrimination_concern",
+          "privacy",
+          "other"
+        ]
+      },
+      "disposition": {
+        "enum": [
+          "accepted_adopted",
+          "accepted_partial",
+          "noted_no_change",
+          "rejected_creator",
+          "referred_operator",
+          "withdrawn_by_submitter"
+        ]
+      },
+      "revision_stage": {
+        "enum": [
+          "concept_draft",
+          "schematic",
+          "developed",
+          "construction_drawing",
+          "as_built",
+          "withdrawn"
+        ]
+      },
+      "safety_review": {
+        "enum": [
+          "not_required",
+          "pending",
+          "passed",
+          "failed"
+        ]
+      },
+      "change_kind": {
+        "enum": [
+          "response_to_feedback",
+          "site_constraint",
+          "safety",
+          "budget",
+          "material",
+          "curatorial",
+          "other"
+        ]
+      },
+      "item_kind": {
+        "enum": [
+          "furniture",
+          "tool",
+          "building_component",
+          "textile",
+          "vehicle_part",
+          "ceramic",
+          "document",
+          "signage",
+          "plant",
+          "stone_soil",
+          "other"
+        ]
+      },
+      "provenance_status": {
+        "enum": [
+          "declared",
+          "ownership_verified",
+          "ownership_disputed",
+          "third_party_claim",
+          "cleared"
+        ]
+      },
+      "title_basis": {
+        "enum": [
+          "self_attested",
+          "household_registered",
+          "collective_village_asset",
+          "operator_asset",
+          "purchase_invoice",
+          "abandoned_asset_notice",
+          "other"
+        ]
+      },
+      "reversibility_level": {
+        "enum": [
+          "fully_reversible",
+          "partially_reversible",
+          "irreversible"
+        ]
+      },
+      "material_decision": {
+        "enum": [
+          "donated",
+          "loaned",
+          "purchased",
+          "returned",
+          "declined_unclear_title",
+          "in_dispute_hold"
+        ]
+      },
+      "loan_status": {
+        "enum": [
+          "loaned_out",
+          "recalled",
+          "returned",
+          "converted_to_donation"
+        ]
+      },
+      "withdrawal_fate": {
+        "enum": [
+          "return_to_owner",
+          "village_takeover",
+          "operator_takeover",
+          "school_archive",
+          "decommission_destroy",
+          "renegotiate"
+        ]
+      },
+      "budget_change_kind": {
+        "enum": [
+          "increase",
+          "decrease",
+          "transfer",
+          "supplement"
+        ]
+      },
+      "procurement_kind": {
+        "enum": [
+          "labor",
+          "fabrication",
+          "material",
+          "tool_rental",
+          "service",
+          "transport",
+          "insurance",
+          "accessibility_facility",
+          "other"
+        ]
+      },
+      "safety_measure": {
+        "enum": [
+          "barrier",
+          "signage",
+          "fireproof",
+          "anti_collision",
+          "electrical_safety",
+          "structural_fix",
+          "accessibility_passage",
+          "other"
+        ]
+      },
+      "acceptance_result": {
+        "enum": [
+          "accepted",
+          "accepted_with_rectification",
+          "rejected"
+        ]
+      },
+      "credit_role": {
+        "enum": [
+          "lead_creator",
+          "co_creator",
+          "community_contributor",
+          "narrator",
+          "facilitator",
+          "fabricator",
+          "sponsor",
+          "operator",
+          "child_participant"
+        ]
+      },
+      "credit_display": {
+        "enum": [
+          "named",
+          "pseudonym",
+          "collective_name",
+          "anonymous"
+        ]
+      },
+      "publication_audience": {
+        "enum": [
+          "public",
+          "community_only",
+          "school_only",
+          "operator_only"
+        ]
+      },
+      "inspection_result": {
+        "enum": [
+          "normal",
+          "wear_natural",
+          "damage_external",
+          "damage_design_defect",
+          "damage_construction",
+          "safety_hazard",
+          "accessibility_fault"
+        ]
+      },
+      "damage_category": {
+        "enum": [
+          "design_defect",
+          "construction_liability",
+          "natural_wear",
+          "external_force",
+          "unclear_under_review"
+        ]
+      },
+      "repair_status": {
+        "enum": [
+          "opened",
+          "liability_attributed",
+          "quoted",
+          "in_progress",
+          "completed",
+          "disputed",
+          "waived"
+        ]
+      },
+      "liable_party": {
+        "enum": [
+          "school",
+          "creator_student_team",
+          "fabricator",
+          "operator",
+          "village_collective",
+          "donor",
+          "insurance",
+          "undetermined"
+        ]
+      },
+      "caretaker_kind": {
+        "enum": [
+          "operator",
+          "village_collective",
+          "school_practice_center",
+          "third_party_contractor"
+        ]
+      },
+      "handoff_kind": {
+        "enum": [
+          "student_graduation",
+          "contractor_replacement",
+          "operator_change",
+          "long_term_custody",
+          "temporary_custody"
+        ]
+      },
+      "obligation_status": {
+        "enum": [
+          "active",
+          "transferred",
+          "suspended",
+          "fulfilled",
+          "terminated"
+        ]
+      }
+    },
+    "site_commission__COMMISSION_OPENED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "project_name",
+        "site_kind",
+        "site_name",
+        "commissioning_party_ref",
+        "school_practice_center_ref"
+      ],
+      "properties": {
+        "project_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "site_kind": {
+          "$ref": "#/$defs/enums/site_kind"
+        },
+        "site_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "commissioning_party_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "school_practice_center_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "operator_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "intended_use": {
+          "type": "string",
+          "minLength": 1
+        },
+        "public_visibility_default": {
+          "$ref": "#/$defs/enums/visibility_level"
+        }
+      }
+    },
+    "site_commission__BRIEF_PUBLISHED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "brief_version",
+        "document_ref"
+      ],
+      "properties": {
+        "brief_version": {
+          "type": "integer"
+        },
+        "document_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "feedback_channel": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/enums/feedback_channel"
+          }
+        },
+        "response_deadline": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "site_commission__SCOPE_CHANGED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reason",
+        "change_description"
+      ],
+      "properties": {
+        "reason": {
+          "$ref": "#/$defs/enums/scope_change_reason"
+        },
+        "change_description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "affected_aggregate_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "notified_parties": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "site_commission__COMMISSION_SUSPENDED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reason"
+      ],
+      "properties": {
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "safety_or_legal_hold": {
+          "type": "boolean"
+        }
+      }
+    },
+    "site_commission__COMMISSION_WITHDRAWN": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reason"
+      ],
+      "properties": {
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notices_sent": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "community_input__INPUT_CONSENTED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "participant_ref",
+        "consent_scope",
+        "channel",
+        "scope_summary"
+      ],
+      "properties": {
+        "participant_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "participant_group": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/enums/participant_group"
+          }
+        },
+        "consent_scope": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/enums/consent_scope"
+          }
+        },
+        "channel": {
+          "$ref": "#/$defs/enums/consent_channel"
+        },
+        "scope_summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "granted_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expires_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "guardian_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "witness_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visibility": {
+          "$ref": "#/$defs/enums/visibility_level"
+        }
+      }
+    },
+    "community_input__INTERVIEW_SUMMARIZED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consent_id",
+        "interview_ref",
+        "summary_text"
+      ],
+      "properties": {
+        "consent_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "interview_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary_text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "topics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/enums/feedback_topic"
+          }
+        },
+        "recorder_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "participant_checked": {
+          "type": "boolean"
+        },
+        "visibility": {
+          "$ref": "#/$defs/enums/visibility_level"
+        }
+      }
+    },
+    "community_input__CONSENT_WITHDRAWN": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consent_id"
+      ],
+      "properties": {
+        "consent_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope_withdrawn": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/enums/consent_scope"
+          }
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "downstream_items_notified": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "community_input__CONSENT_EXPIRED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consent_id"
+      ],
+      "properties": {
+        "consent_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "community_input__CONSENT_SCOPE_EXTENDED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consent_id",
+        "added_scope",
+        "channel"
+      ],
+      "properties": {
+        "consent_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "added_scope": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/enums/consent_scope"
+          }
+        },
+        "channel": {
+          "$ref": "#/$defs/enums/consent_channel"
+        },
+        "guardian_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "local_narrative__NARRATIVE_RECORDED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "narrative_id",
+        "consent_id",
+        "role",
+        "content_summary",
+        "status"
+      ],
+      "properties": {
+        "narrative_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "consent_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "$ref": "#/$defs/enums/narrative_role"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "content_summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_location_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/enums/narrativity_status"
+        },
+        "visibility": {
+          "$ref": "#/$defs/enums/visibility_level"
+        }
+      }
+    },
+    "local_narrative__NARRATIVE_CORROBORATED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "narrative_id",
+        "corroborated_by"
+      ],
+      "properties": {
+        "narrative_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "corroborated_by": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "local_narrative__NARRATIVE_DISPUTED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "narrative_id",
+        "dispute_summary"
+      ],
+      "properties": {
+        "narrative_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "disputant_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dispute_summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status_after": {
+          "$ref": "#/$defs/enums/narrativity_status"
+        }
+      }
+    },
+    "local_narrative__NARRATIVE_RETRACTED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "narrative_id"
+      ],
+      "properties": {
+        "narrative_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "derived_design_elements": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "feedback_case__FEEDBACK_SUBMITTED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "channel",
+        "content_summary"
+      ],
+      "properties": {
+        "submitter_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "channel": {
+          "$ref": "#/$defs/enums/feedback_channel"
+        },
+        "topic": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/enums/feedback_topic"
+          }
+        },
+        "content_summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "related_narrative_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "related_revision_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "public_token": {
+          "type": "string",
+          "minLength": 1
+        },
+        "visibility": {
+          "$ref": "#/$defs/enums/visibility_level"
+        }
+      }
+    },
+    "feedback_case__FEEDBACK_TRIAGED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "feedback_id",
+        "representative_status"
+      ],
+      "properties": {
+        "feedback_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "representative_status": {
+          "$ref": "#/$defs/enums/representative_status"
+        },
+        "group_evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "duplicate_of": {
+          "type": "string",
+          "minLength": 1
+        },
+        "triage_note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "separate_response_required": {
+          "type": "boolean"
+        }
+      }
+    },
+    "feedback_case__FEEDBACK_RESPONDED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "feedback_id",
+        "disposition",
+        "response_summary"
+      ],
+      "properties": {
+        "feedback_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "disposition": {
+          "$ref": "#/$defs/enums/disposition"
+        },
+        "response_summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reflected_in_revision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "refusal_basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "responded_by_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "public_reply": {
+          "type": "boolean"
+        }
+      }
+    },
+    "feedback_case__FEEDBACK_RESPONSE_ESCALATED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "feedback_id",
+        "escalated_to_ref",
+        "reason"
+      ],
+      "properties": {
+        "feedback_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "escalated_to_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_deadline": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "design_revision__DESIGN_DRAFTED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "revision_no",
+        "stage",
+        "document_ref"
+      ],
+      "properties": {
+        "revision_no": {
+          "type": "integer"
+        },
+        "stage": {
+          "$ref": "#/$defs/enums/revision_stage"
+        },
+        "based_on_revision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "document_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "incorporated_narrative_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "incorporated_feedback_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "safety_review": {
+          "$ref": "#/$defs/enums/safety_review"
+        },
+        "creators": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "design_revision__DESIGN_RESPONDED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "revision_id",
+        "change_kind",
+        "change_summary"
+      ],
+      "properties": {
+        "revision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "change_kind": {
+          "$ref": "#/$defs/enums/change_kind"
+        },
+        "change_summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "feedback_ids_addressed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "feedback_ids_not_adopted": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "not_adopted_reasons": {
+          "type": "object"
+        },
+        "narrative_ids_addressed": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "new_revision_no": {
+          "type": "integer"
+        }
+      }
+    },
+    "design_revision__UNSAFE_OR_DISCRIMINATORY_INPUT_REJECTED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "refusal_kind",
+        "basis",
+        "decided_by_ref"
+      ],
+      "properties": {
+        "source_feedback_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_narrative_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "refusal_kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "regulation_or_standard_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "alternative_offered": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decided_by_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "design_revision__DESIGN_FROZEN_FOR_BUILD": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "revision_id",
+        "safety_review_result"
+      ],
+      "properties": {
+        "revision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "safety_review_result": {
+          "$ref": "#/$defs/enums/safety_review"
+        },
+        "accessibility_check_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "approver_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "material_item__MATERIAL_PLEDGED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "item_name",
+        "item_kind",
+        "owner_ref",
+        "proposed_use"
+      ],
+      "properties": {
+        "item_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "item_kind": {
+          "$ref": "#/$defs/enums/item_kind"
+        },
+        "owner_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "consent_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "proposed_use": {
+          "type": "string",
+          "minLength": 1
+        },
+        "intended_reversibility": {
+          "$ref": "#/$defs/enums/reversibility_level"
+        },
+        "condition_report_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "photos_ref": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "material_item__OWNERSHIP_VERIFIED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "item_id",
+        "status",
+        "title_basis"
+      ],
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/enums/provenance_status"
+        },
+        "title_basis": {
+          "$ref": "#/$defs/enums/title_basis"
+        },
+        "evidence_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "verifier_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "material_item__REVERSIBILITY_ASSESSED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "item_id",
+        "level"
+      ],
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "level": {
+          "$ref": "#/$defs/enums/reversibility_level"
+        },
+        "reversible_actions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "irreversible_actions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "owner_confirmed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "material_item__MATERIAL_DISPOSITION_DECIDED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "item_id",
+        "decision",
+        "agreement_ref",
+        "agreed_fate_on_withdrawal"
+      ],
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision": {
+          "$ref": "#/$defs/enums/material_decision"
+        },
+        "agreement_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "agreed_fate_on_withdrawal": {
+          "$ref": "#/$defs/enums/withdrawal_fate"
+        },
+        "loan_due_at": {
+          "type": "string",
+          "minLength": 1
+        },
+        "owner_signed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "material_item__MATERIAL_RECALLED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "item_id",
+        "recalled_by_ref",
+        "returned"
+      ],
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "loan_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "recalled_by_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "condition_on_return_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "returned": {
+          "type": "boolean"
+        }
+      }
+    },
+    "material_item__WORK_WITHDRAWN_FROM_DISPLAY": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "item_id",
+        "reason",
+        "fate"
+      ],
+      "properties": {
+        "item_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "work_asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fate": {
+          "$ref": "#/$defs/enums/withdrawal_fate"
+        },
+        "agreement_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "completed_at": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "minor_participation__MINOR_CONSENT_GRANTED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minor_consent_id",
+        "guardian_ref",
+        "activity_scope",
+        "signed_agreement_ref"
+      ],
+      "properties": {
+        "minor_consent_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "guardian_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "school_or_org_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "activity_scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "agreed_outputs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "signed_agreement_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "consent_channel": {
+          "$ref": "#/$defs/enums/consent_channel"
+        },
+        "expires_at": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "minor_participation__MINOR_WORK_INCORPORATED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minor_consent_id",
+        "work_description",
+        "revision_id"
+      ],
+      "properties": {
+        "minor_consent_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "work_description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "treatment": {
+          "type": "string",
+          "minLength": 1
+        },
+        "credit_preference": {
+          "$ref": "#/$defs/enums/credit_display"
+        }
+      }
+    },
+    "minor_participation__MINOR_CONSENT_WITHDRAWN": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minor_consent_id",
+        "personal_data_action"
+      ],
+      "properties": {
+        "minor_consent_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "withdraw_scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "personal_data_action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "replacement_plan": {
+          "type": "string",
+          "minLength": 1
+        },
+        "guardian_notified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "budget_case__BUDGET_ALLOCATED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "total_amount"
+      ],
+      "properties": {
+        "total_amount": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string",
+          "minLength": 1
+        },
+        "funding_sources": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "earmark": {
+          "type": "object"
+        },
+        "document_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "budget_case__BUDGET_CHANGED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "amount",
+        "reason"
+      ],
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/enums/budget_change_kind"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "approval_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "budget_case__PROCUREMENT_RECORDED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "amount",
+        "invoice_ref"
+      ],
+      "properties": {
+        "kind": {
+          "$ref": "#/$defs/enums/procurement_kind"
+        },
+        "vendor_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "amount": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string",
+          "minLength": 1
+        },
+        "invoice_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "linked_material_item_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "linked_revision_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "budget_case__DONATED_ITEM_VALUED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "material_item_id",
+        "nominal_value"
+      ],
+      "properties": {
+        "material_item_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "nominal_value": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string",
+          "minLength": 1
+        },
+        "valuation_note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tax_or_receipt_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "installation_work__INSTALLATION_STARTED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "revision_id",
+        "fabricator_ref",
+        "safety_measures"
+      ],
+      "properties": {
+        "revision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fabricator_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "site_contact_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "safety_measures": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/enums/safety_measure"
+          }
+        },
+        "material_item_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "start_date": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "installation_work__CONSTRUCTION_INCIDENT_RECORDED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "incident_ref",
+        "description"
+      ],
+      "properties": {
+        "incident_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "injury": {
+          "type": "boolean"
+        },
+        "property_damage": {
+          "type": "boolean"
+        },
+        "corrective_action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authority_notified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "installation_work__INSTALLATION_ACCEPTED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "work_asset_id",
+        "revision_id",
+        "result",
+        "acceptor_refs"
+      ],
+      "properties": {
+        "work_asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "result": {
+          "$ref": "#/$defs/enums/acceptance_result"
+        },
+        "rectification_items": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "rectification_deadline": {
+          "type": "string",
+          "minLength": 1
+        },
+        "acceptor_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "as_built_doc_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "warranty_until": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "credit_publication__CREDIT_PREFERENCE_RECORDED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "person_ref",
+        "role",
+        "display"
+      ],
+      "properties": {
+        "person_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "role": {
+          "$ref": "#/$defs/enums/credit_role"
+        },
+        "display": {
+          "$ref": "#/$defs/enums/credit_display"
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "credit_publication__WORK_PUBLISHED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "work_asset_id",
+        "revision_id",
+        "audience"
+      ],
+      "properties": {
+        "work_asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "revision_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "audience": {
+          "$ref": "#/$defs/enums/publication_audience"
+        },
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "credit_line_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "narrative_attribution_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "includes_minor_work": {
+          "type": "boolean"
+        }
+      }
+    },
+    "credit_publication__PUBLICATION_TAKEN_DOWN": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "work_asset_id",
+        "reason"
+      ],
+      "properties": {
+        "work_asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "consent_or_claim_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "replacements_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "maintenance_obligation__MAINTENANCE_ASSIGNED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "work_asset_id",
+        "caretaker_kind",
+        "caretaker_ref",
+        "duties",
+        "valid_from"
+      ],
+      "properties": {
+        "work_asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "caretaker_kind": {
+          "$ref": "#/$defs/enums/caretaker_kind"
+        },
+        "caretaker_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "duties": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "cadence_days": {
+          "type": "integer"
+        },
+        "valid_from": {
+          "type": "string",
+          "minLength": 1
+        },
+        "valid_until": {
+          "type": "string",
+          "minLength": 1
+        },
+        "backup_caretaker_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "agreement_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "maintenance_obligation__MAINTENANCE_HANDOFF": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "obligation_id",
+        "kind",
+        "incoming_ref",
+        "effective_at"
+      ],
+      "properties": {
+        "obligation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "$ref": "#/$defs/enums/handoff_kind"
+        },
+        "outgoing_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "incoming_caretaker_kind": {
+          "$ref": "#/$defs/enums/caretaker_kind"
+        },
+        "incoming_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "handed_over_records": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "effective_at": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "maintenance_obligation__OBLIGATION_STATUS_CHANGED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "obligation_id",
+        "status"
+      ],
+      "properties": {
+        "obligation_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status": {
+          "$ref": "#/$defs/enums/obligation_status"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "inspection_case__INSPECTION_LOGGED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "work_asset_id",
+        "inspector_ref",
+        "result"
+      ],
+      "properties": {
+        "work_asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inspector_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "result": {
+          "$ref": "#/$defs/enums/inspection_result"
+        },
+        "findings_summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "next_due_at": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "repair_case__REPAIR_OPENED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "work_asset_id",
+        "damage_description"
+      ],
+      "properties": {
+        "work_asset_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inspection_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "damage_description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "urgency": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "repair_case__DAMAGE_LIABILITY_DETERMINED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repair_id",
+        "category",
+        "liable_party",
+        "basis"
+      ],
+      "properties": {
+        "repair_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "category": {
+          "$ref": "#/$defs/enums/damage_category"
+        },
+        "liable_party": {
+          "$ref": "#/$defs/enums/liable_party"
+        },
+        "basis": {
+          "type": "string",
+          "minLength": 1
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "warranty_applied": {
+          "type": "boolean"
+        },
+        "dissenting_party_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "dissent_note": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "repair_case__REPAIR_COMPLETED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repair_id",
+        "actions"
+      ],
+      "properties": {
+        "repair_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "cost": {
+          "type": "number"
+        },
+        "currency": {
+          "type": "string",
+          "minLength": 1
+        },
+        "repaired_by_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reversibility_preserved": {
+          "type": "boolean"
+        },
+        "acceptor_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "repair_case__REPAIR_DISPUTED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repair_id",
+        "disputant_ref",
+        "claim"
+      ],
+      "properties": {
+        "repair_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "disputant_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mediation_ref": {
+          "type": "string",
+          "minLength": 1
+        },
+        "status_after": {
+          "$ref": "#/$defs/enums/repair_status"
+        }
+      }
+    },
+    "correction_record__RECORD_CORRECTED": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "corrected_event_id",
+        "field",
+        "reason",
+        "corrected_by_ref"
+      ],
+      "properties": {
+        "corrected_event_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "field": {
+          "type": "string",
+          "minLength": 1
+        },
+        "corrected_value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "corrected_by_ref": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
 }

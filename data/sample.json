@@ -1,9 +1,19 @@
 {
-  "event_id": "sample-006-001",
+  "event_id": "sample-001-001",
   "event_type": "COMMISSION_OPENED",
   "aggregate_type": "site_commission",
-  "aggregate_id": "public_art_cocreation-001",
-  "occurred_at": "2026-09-20T18:00:00+08:00",
+  "aggregate_id": "C-2026-001",
+  "occurred_at": "2026-09-20T10:00:00+08:00",
   "version": 1,
-  "summary": "登记公共艺术共创履约簿的首条领域记录"
+  "summary": "社会实践中心登记地铁站厅共创委托",
+  "payload": {
+    "project_name": "站厅里的村口——2 号线江滨站公共艺术共创",
+    "site_kind": "metro_station",
+    "site_name": "2 号线江滨站站厅",
+    "commissioning_party_ref": "party:metro-line2-company",
+    "school_practice_center_ref": "party:academy-practice-center",
+    "operator_ref": "party:metro-line2-station-ops",
+    "intended_use": "通勤者可停留、可触摸、带有街区记忆的休息与导览装置",
+    "public_visibility_default": "public"
+  }
 }

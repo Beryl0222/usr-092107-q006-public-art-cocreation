@@ -5,6 +5,7 @@
   "type": "module",
   "description": "领域事件基础校验",
   "scripts": {
+    "build:schema": "node scripts/build-schema.mjs",
     "test": "node --test"
   }
 }
