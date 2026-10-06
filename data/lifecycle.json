@@ -1,0 +1,897 @@
+[
+  {
+    "event_id": "evt-001",
+    "event_type": "COMMISSION_OPENED",
+    "aggregate_type": "site_commission",
+    "aggregate_id": "PAC-METRO-2026-007",
+    "occurred_at": "2026-09-20T10:00:00+08:00",
+    "version": 1,
+    "summary": "设立委托：2号线梅园站站厅公共艺术共创项目",
+    "visibility": "open",
+    "sensitivity": "none",
+    "payload": {
+      "site_name": "2号线梅园站站厅",
+      "site_kind": "transit_station",
+      "commissioning_party": "市地铁运营集团",
+      "partners": ["美院社会实践中心", "梅园街道办事处"],
+      "expected_lifecycle_years": 5
+    }
+  },
+  {
+    "event_id": "evt-002",
+    "event_type": "SITE_CONTEXT_RECORDED",
+    "aggregate_type": "community_input",
+    "aggregate_id": "PAC-METRO-2026-007#inp-01",
+    "occurred_at": "2026-09-23T09:30:00+08:00",
+    "version": 1,
+    "summary": "访谈老通勤者：站口早市与豆腐摊的街区记忆",
+    "visibility": "restricted",
+    "sensitivity": "personal",
+    "payload": {
+      "participant_ref": "P-101",
+      "source_type": "interview",
+      "narrative_summary": "1990年代站口早市人声、搪瓷站牌与夜班末班车的等待记忆，希望作品保留‘热气腾腾’的早市意象。",
+      "personal_name": "王某某",
+      "recorded_by": "学生工作组 S-07"
+    }
+  },
+  {
+    "event_id": "evt-003",
+    "event_type": "INPUT_CONSENTED",
+    "aggregate_type": "community_input",
+    "aggregate_id": "PAC-METRO-2026-007#inp-01",
+    "occurred_at": "2026-09-23T10:10:00+08:00",
+    "version": 2,
+    "summary": "P-101 签署访谈使用授权：可脱敏文字引用，可随时撤回",
+    "visibility": "restricted",
+    "sensitivity": "personal",
+    "payload": {
+      "participant_ref": "P-101",
+      "context_event_id": "evt-002",
+      "consent_scope": {
+        "uses": ["design_reference", "public_exhibition_text"],
+        "anonymized": true,
+        "audio": false,
+        "withdrawable": true
+      },
+      "consent_basis": {
+        "method": "signed_paper_form",
+        "witness_role": "街道社工",
+        "form_ref": "FORM-C-2026-0101"
+      }
+    }
+  },
+  {
+    "event_id": "evt-004",
+    "event_type": "SITE_CONTEXT_RECORDED",
+    "aggregate_type": "community_input",
+    "aggregate_id": "PAC-METRO-2026-007#inp-02",
+    "occurred_at": "2026-09-24T14:00:00+08:00",
+    "version": 1,
+    "summary": "口述史：方言童谣与族群迁徙记忆",
+    "visibility": "restricted",
+    "sensitivity": "minority",
+    "payload": {
+      "participant_ref": "P-204",
+      "source_type": "oral_history",
+      "narrative_summary": "三段方言童谣及其迁徙路线记忆，同意录制音频并在站点二维码中播放，要求文字定稿前经族群代表确认。",
+      "recorded_by": "学生工作组 S-07"
+    }
+  },
+  {
+    "event_id": "evt-005",
+    "event_type": "INPUT_CONSENTED",
+    "aggregate_type": "community_input",
+    "aggregate_id": "PAC-METRO-2026-007#inp-02",
+    "occurred_at": "2026-09-24T15:00:00+08:00",
+    "version": 2,
+    "summary": "P-204 授权：音频可在站点二维码播放，文字须经会签",
+    "visibility": "restricted",
+    "sensitivity": "minority",
+    "payload": {
+      "participant_ref": "P-204",
+      "context_event_id": "evt-004",
+      "consent_scope": {
+        "uses": ["design_reference", "public_exhibition_text", "qr_audio"],
+        "anonymized": false,
+        "audio": true,
+        "withdrawable": true,
+        "conditions": ["文字定稿须经族群代表会签"]
+      },
+      "consent_basis": {
+        "method": "signed_paper_form",
+        "witness_role": "族群代表与社工",
+        "form_ref": "FORM-C-2026-0102"
+      }
+    }
+  },
+  {
+    "event_id": "evt-006",
+    "event_type": "NARRATIVE_SOURCE_CITED",
+    "aggregate_type": "community_input",
+    "aggregate_id": "PAC-METRO-2026-007#inp-03",
+    "occurred_at": "2026-09-25T11:00:00+08:00",
+    "version": 1,
+    "summary": "出处登记：区档案馆梅园商号登记簿",
+    "visibility": "internal",
+    "sensitivity": "none",
+    "payload": {
+      "source_ref": "区档案馆 梅园商号登记簿 全宗37-卷98",
+      "provenance_type": "local_record",
+      "access_grant": "馆方书面同意节录早市商号名称，公开展示须标注出处",
+      "used_for": "浮雕墙商号字样考据"
+    }
+  },
+  {
+    "event_id": "evt-007",
+    "event_type": "RECORD_CORRECTED",
+    "aggregate_type": "community_input",
+    "aggregate_id": "PAC-METRO-2026-007#inp-03",
+    "occurred_at": "2026-09-29T16:20:00+08:00",
+    "version": 2,
+    "summary": "更正：商号登记簿卷号为全宗37-卷88（追加更正，不改写原记录）",
+    "visibility": "internal",
+    "sensitivity": "none",
+    "payload": {
+      "corrected_event_id": "evt-006",
+      "corrected_event_type": "NARRATIVE_SOURCE_CITED",
+      "correction_reason": "档案查阅回执显示卷号笔误",
+      "changes": { "source_ref": "区档案馆 梅园商号登记簿 全宗37-卷88" }
+    }
+  },
+  {
+    "event_id": "evt-008",
+    "event_type": "FEEDBACK_RECORDED",
+    "aggregate_type": "community_feedback",
+    "aggregate_id": "PAC-METRO-2026-007#fb-01",
+    "occurred_at": "2026-10-03T08:40:00+08:00",
+    "version": 1,
+    "summary": "通勤者反馈：希望保留早市记忆并增加可休息座位",
+    "visibility": "community",
+    "sensitivity": "none",
+    "payload": {
+      "submitter_category": "commuter",
+      "content_summary": "站厅记忆墙很好，但候车时没有座位，建议结合作品增加座椅。",
+      "is_accessibility_related": false,
+      "channel": "现场公告二维码",
+      "contact_info": "微信匿名ID wx_88****"
+    }
+  },
+  {
+    "event_id": "evt-009",
+    "event_type": "FEEDBACK_RECORDED",
+    "aggregate_type": "community_feedback",
+    "aggregate_id": "PAC-METRO-2026-007#fb-02",
+    "occurred_at": "2026-10-04T10:15:00+08:00",
+    "version": 1,
+    "summary": "轮椅使用者异议：浮雕底座侵占盲道，说明牌无法靠近阅读",
+    "visibility": "community",
+    "sensitivity": "none",
+    "payload": {
+      "submitter_category": "accessibility_user",
+      "content_summary": "底座外沿距盲道仅15厘米，轮椅无法回转；说明牌高度1500mm，坐姿不可读。",
+      "is_accessibility_related": true,
+      "channel": "手语与无障碍工作坊",
+      "contact_info": "经社工转交"
+    }
+  },
+  {
+    "event_id": "evt-010",
+    "event_type": "FEEDBACK_RECORDED",
+    "aggregate_type": "community_feedback",
+    "aggregate_id": "PAC-METRO-2026-007#fb-03",
+    "occurred_at": "2026-10-04T15:30:00+08:00",
+    "version": 1,
+    "summary": "少数群体成员异议：童谣用字须本族群确认，避免他者化标注",
+    "visibility": "community",
+    "sensitivity": "minority",
+    "payload": {
+      "submitter_category": "minority_group_member",
+      "content_summary": "方案草图中的童谣谐音字与解说口吻有他者化风险，要求文字会签并使用本族自称。",
+      "is_accessibility_related": false,
+      "channel": "族群代表座谈会"
+    }
+  },
+  {
+    "event_id": "evt-011",
+    "event_type": "FEEDBACK_TRIAGED",
+    "aggregate_type": "community_feedback",
+    "aggregate_id": "PAC-METRO-2026-007#tri-01",
+    "occurred_at": "2026-10-06T17:00:00+08:00",
+    "version": 1,
+    "summary": "反馈归类：37条意见的覆盖度统计与加权理由，2条标记为须单独回应",
+    "visibility": "internal",
+    "sensitivity": "none",
+    "payload": {
+      "feedback_event_ids": ["evt-008", "evt-009", "evt-010"],
+      "reach_summary": {
+        "total_count": 37,
+        "channels": ["现场公告二维码", "街道公告栏", "手语与无障碍工作坊", "族群代表座谈会"],
+        "note": "数量仅表示各渠道触达，不代表群体代表性"
+      },
+      "weighting_rationale": "无障碍与人身安全相关异议按规范优先；少数群体文化表述异议涉及尊严与准确性，逐条审议；二者均不因票数少而并入多数意见。",
+      "minority_or_accessibility_flags": ["evt-009", "evt-010"]
+    }
+  },
+  {
+    "event_id": "evt-012",
+    "event_type": "DESIGN_DRAFTED",
+    "aggregate_type": "design_revision",
+    "aggregate_id": "PAC-METRO-2026-007#design-01",
+    "occurred_at": "2026-10-10T13:00:00+08:00",
+    "version": 1,
+    "summary": "方案初稿《梅园早市》浮雕墙 v1",
+    "visibility": "open",
+    "sensitivity": "none",
+    "payload": {
+      "title": "梅园早市",
+      "based_on_input_event_ids": ["evt-002", "evt-004", "evt-006"],
+      "proposal_summary": "沿站厅长12米浮雕，呈现早市、搪瓷站牌与童谣意象，配二维码语音。"
+    }
+  },
+  {
+    "event_id": "evt-013",
+    "event_type": "SAFETY_OR_DISCRIMINATION_REFUSAL",
+    "aggregate_type": "design_revision",
+    "aggregate_id": "PAC-METRO-2026-007#design-01",
+    "occurred_at": "2026-10-11T11:00:00+08:00",
+    "version": 2,
+    "summary": "拒绝内移盲道侧扶手的建议，书面说明无障碍依据并给出替代",
+    "visibility": "open",
+    "sensitivity": "none",
+    "payload": {
+      "refused_suggestion_summary": "有商业合作方建议将盲道一侧扶手内移20厘米，以加宽灯箱广告位。",
+      "basis_category": "accessibility_barrier",
+      "basis_detail": "内移后轮椅回转宽度不足1200mm，违反《无障碍设计规范》GB 50763，且形成视障者行进障碍。",
+      "alternative_offered": "广告改为墙面上方丝印带，不占通行与回转空间。"
+    }
+  },
+  {
+    "event_id": "evt-014",
+    "event_type": "DESIGN_RESPONDED",
+    "aggregate_type": "design_revision",
+    "aggregate_id": "PAC-METRO-2026-007#design-01",
+    "occurred_at": "2026-10-12T09:00:00+08:00",
+    "version": 3,
+    "summary": "对通勤者座椅建议的公开回应：采纳并并入下一版本",
+    "visibility": "open",
+    "sensitivity": "none",
+    "payload": {
+      "feedback_event_id": "evt-008",
+      "decision": "adopted",
+      "rationale": "在浮雕墙端部设置3处折叠坐板，不侵占盲道与检修通道，v2可见。"
+    }
+  },
+  {
+    "event_id": "evt-015",
+    "event_type": "OBJECTION_RESPONDED",
+    "aggregate_type": "community_feedback",
+    "aggregate_id": "PAC-METRO-2026-007#fb-02",
+    "occurred_at": "2026-10-12T09:30:00+08:00",
+    "version": 2,
+    "summary": "对无障碍异议的单独回应：底座退界、说明牌降至1100mm",
+    "visibility": "community",
+    "sensitivity": "none",
+    "payload": {
+      "objection_event_id": "evt-009",
+      "response": "底座退界至距盲道400mm以上，留出1500mm回转空间；说明牌主信息下沿1100mm并配凸字与语音。",
+      "disposition": "accepted",
+      "follow_up_required": true
+    }
+  },
+  {
+    "event_id": "evt-016",
+    "event_type": "OBJECTION_RESPONDED",
+    "aggregate_type": "community_feedback",
+    "aggregate_id": "PAC-METRO-2026-007#fb-03",
+    "occurred_at": "2026-10-12T10:00:00+08:00",
+    "version": 2,
+    "summary": "对少数群体异议的单独回应：文字会签机制，部分采纳原标注方式",
+    "visibility": "community",
+    "sensitivity": "minority",
+    "payload": {
+      "objection_event_id": "evt-010",
+      "response": "童谣文字由3名族群代表会签后定稿，解说统一使用本族自称；原拟的谐音拼写不采用。会签过程时间超出学期节点，故标注方式仅部分采纳。",
+      "disposition": "partially_adopted",
+      "follow_up_required": true
+    }
+  },
+  {
+    "event_id": "evt-017",
+    "event_type": "DESIGN_REVISION_PUBLISHED",
+    "aggregate_type": "design_revision",
+    "aggregate_id": "PAC-METRO-2026-007#design-01",
+    "occurred_at": "2026-10-20T16:00:00+08:00",
+    "version": 4,
+    "summary": "公开发布方案 v2.0：退界、降牌、折叠座椅、童谣会签机制",
+    "visibility": "open",
+    "sensitivity": "none",
+    "payload": {
+      "revision_no": "2.0",
+      "based_on_draft_event_id": "evt-012",
+      "change_summary": "底座退界400mm；说明牌降至1100mm；端部增加3处折叠坐板；童谣文字改为族群代表会签；广告改为上部丝印。"
+    }
+  },
+  {
+    "event_id": "evt-018",
+    "event_type": "MATERIAL_PLEDGED",
+    "aggregate_type": "material_agreement",
+    "aggregate_id": "PAC-METRO-2026-007#mat-301",
+    "occurred_at": "2026-10-25T10:00:00+08:00",
+    "version": 1,
+    "summary": "居民捐出1998年老站务搪瓷站牌（意向，尚未确权）",
+    "visibility": "restricted",
+    "sensitivity": "personal",
+    "payload": {
+      "material_ref": "MAT-301",
+      "donor_category": "resident",
+      "description": "1998年梅园站搪瓷站牌一块，边角有磕损",
+      "intended_use": "嵌入浮雕墙端头展示位",
+      "donor_name": "王某某",
+      "donor_contact": "138********"
+    }
+  },
+  {
+    "event_id": "evt-019",
+    "event_type": "MATERIAL_PLEDGED",
+    "aggregate_type": "material_agreement",
+    "aggregate_id": "PAC-METRO-2026-007#mat-302",
+    "occurred_at": "2026-10-25T10:30:00+08:00",
+    "version": 1,
+    "summary": "村民借出自家小型木制织布机具（借用意向，尚未确权）",
+    "visibility": "restricted",
+    "sensitivity": "personal",
+    "payload": {
+      "material_ref": "MAT-302",
+      "donor_category": "villager",
+      "description": "小型木制织布机具，约1980年代",
+      "intended_use": "站厅展柜中轮展，借期至2027年3月",
+      "donor_name": "李某某",
+      "donor_contact": "村集体转交"
+    }
+  },
+  {
+    "event_id": "evt-020",
+    "event_type": "OWNERSHIP_VERIFIED",
+    "aggregate_type": "material_agreement",
+    "aggregate_id": "PAC-METRO-2026-007#mat-301",
+    "occurred_at": "2026-10-27T14:00:00+08:00",
+    "version": 2,
+    "summary": "确认MAT-301权属与可逆范围：卡扣固定，不得切割搪瓷面",
+    "visibility": "restricted",
+    "sensitivity": "personal",
+    "payload": {
+      "material_ref": "MAT-301",
+      "ownership_basis": "捐助人持有原始站务工作证，并有两任老站长书面证明",
+      "reversible_scope": {
+        "reversible": true,
+        "allowed_methods": "背部卡扣固定于展槽，可整体取出",
+        "restrictions": ["不得焊接", "不得切割搪瓷面", "表面仅做除尘封护"]
+      },
+      "post_project_arrangement": "随作品保存5年；作品撤展时返还家属，家属亦可提前30日书面取回"
+    }
+  },
+  {
+    "event_id": "evt-021",
+    "event_type": "OWNERSHIP_VERIFIED",
+    "aggregate_type": "material_agreement",
+    "aggregate_id": "PAC-METRO-2026-007#mat-302",
+    "occurred_at": "2026-10-27T15:00:00+08:00",
+    "version": 2,
+    "summary": "确认MAT-302权属与可逆范围：展柜托板固定，可原样取回",
+    "visibility": "restricted",
+    "sensitivity": "personal",
+    "payload": {
+      "material_ref": "MAT-302",
+      "ownership_basis": "村集体出具家庭传承证明，出借人签字确认",
+      "reversible_scope": {
+        "reversible": true,
+        "allowed_methods": "独立展柜托板棉带固定，不接触五金件",
+        "restrictions": ["不得修复性重绘", "温湿度须维持展柜约定区间"]
+      },
+      "post_project_arrangement": "借期至2027-03-15，到期原样归还；期间出借人可提前15日书面要求撤回"
+    }
+  },
+  {
+    "event_id": "evt-022",
+    "event_type": "MATERIAL_DONATION_AGREEMENT_SIGNED",
+    "aggregate_type": "material_agreement",
+    "aggregate_id": "PAC-METRO-2026-007#mat-301",
+    "occurred_at": "2026-10-29T11:00:00+08:00",
+    "version": 3,
+    "summary": "签署MAT-301捐赠协议：权属转移、维护责任与撤回条款书面化",
+    "visibility": "restricted",
+    "sensitivity": "personal",
+    "payload": {
+      "agreement_ref": "AGR-M-301",
+      "material_ref": "MAT-301",
+      "ownership_transfer_terms": "确权后权属赠与项目，运营方受托保管；家属保留带名题记与提前取回权",
+      "maintenance_duty": "运营方负责年度除尘与封护检查，费用列养护预算",
+      "withdrawal_terms": "家属可提前30日书面要求撤回展示，撤下后返还，题记留存",
+      "signed_by_roles": ["捐助人", "校社会实践中心代表", "运营方代表"]
+    }
+  },
+  {
+    "event_id": "evt-023",
+    "event_type": "MATERIAL_LOAN_AGREEMENT_SIGNED",
+    "aggregate_type": "material_agreement",
+    "aggregate_id": "PAC-METRO-2026-007#mat-302",
+    "occurred_at": "2026-10-29T11:30:00+08:00",
+    "version": 3,
+    "summary": "签署MAT-302借用协议：借期、归还、维护与撤回条款书面化",
+    "visibility": "restricted",
+    "sensitivity": "personal",
+    "payload": {
+      "agreement_ref": "AGR-M-302",
+      "material_ref": "MAT-302",
+      "loan_period": "2026-11-15 至 2027-03-15",
+      "return_terms": "到期按入柜清单原样归还，村集体代表在场点交",
+      "maintenance_duty": "校工作组负责展柜温湿度记录，运营方负责柜体安全",
+      "withdrawal_terms": "出借人可提前15日书面要求撤回，撤回后5个工作日内撤展",
+      "signed_by_roles": ["出借人", "村集体代表", "校社会实践中心代表"]
+    }
+  },
+  {
+    "event_id": "evt-024",
+    "event_type": "MATERIAL_INCORPORATED",
+    "aggregate_type": "material_agreement",
+    "aggregate_id": "PAC-METRO-2026-007#mat-301",
+    "occurred_at": "2026-10-29T14:00:00+08:00",
+    "version": 4,
+    "summary": "MAT-301按可逆方式嵌入v2.0浮雕端头展槽",
+    "visibility": "internal",
+    "sensitivity": "none",
+    "payload": {
+      "material_ref": "MAT-301",
+      "revision_event_id": "evt-017",
+      "reversibility_confirmed": true,
+      "installation_note": "背部卡扣固定，未焊接未切割"
+    }
+  },
+  {
+    "event_id": "evt-025",
+    "event_type": "MATERIAL_INCORPORATED",
+    "aggregate_type": "material_agreement",
+    "aggregate_id": "PAC-METRO-2026-007#mat-302",
+    "occurred_at": "2026-11-02T10:00:00+08:00",
+    "version": 4,
+    "summary": "MAT-302入独立展柜轮展，可逆性已确认",
+    "visibility": "internal",
+    "sensitivity": "none",
+    "payload": {
+      "material_ref": "MAT-302",
+      "revision_event_id": "evt-017",
+      "reversibility_confirmed": true,
+      "installation_note": "独立展柜棉带固定，不接触文物本体五金件"
+    }
+  },
+  {
+    "event_id": "evt-026",
+    "event_type": "CHILD_PARTICIPATION_CONSENTED",
+    "aggregate_type": "child_participation",
+    "aggregate_id": "PAC-METRO-2026-007#child-01",
+    "occurred_at": "2026-11-03T13:30:00+08:00",
+    "version": 1,
+    "summary": "附属小学美术工作坊8名儿童参与：监护人逐一签署同意，可随时撤回",
+    "visibility": "restricted",
+    "sensitivity": "confidential",
+    "payload": {
+      "child_participation_ref": "CHD-01",
+      "guardian_consent": {
+        "method": "guardian_signed_form",
+        "count": 8,
+        "witness_role": "学校大队辅导员",
+        "form_refs": ["FORM-K-2026-0301", "FORM-K-2026-0308"]
+      },
+      "activity_scope": ["浮雕局部纹样集体创作", "手印陶片烧制"],
+      "withdrawal_policy_summary": "监护人或儿童本人可随时撤回，撤回后陶片可移除或换为匿名集体署名"
+    }
+  },
+  {
+    "event_id": "evt-027",
+    "event_type": "CHILD_WORK_AGREEMENT_RECORDED",
+    "aggregate_type": "child_participation",
+    "aggregate_id": "PAC-METRO-2026-007#child-01",
+    "occurred_at": "2026-11-03T14:00:00+08:00",
+    "version": 2,
+    "summary": "儿童作品展示条款：默认集体化名，个人姓名不公开",
+    "visibility": "restricted",
+    "sensitivity": "confidential",
+    "payload": {
+      "agreement_ref": "AGR-K-01",
+      "child_participation_refs": ["CHD-01"],
+      "display_terms": "陶片墙以‘梅园小同学们’集体化名展示；不标注任何儿童真实姓名与影像",
+      "withdrawal_terms": "撤回的陶片7日内取下，档案中对应照片同步删除",
+      "attribution_choice": "collective_pseudonym"
+    }
+  },
+  {
+    "event_id": "evt-028",
+    "event_type": "BUDGET_APPROVED",
+    "aggregate_type": "budget_procurement",
+    "aggregate_id": "PAC-METRO-2026-007#bud-01",
+    "occurred_at": "2026-11-05T09:00:00+08:00",
+    "version": 1,
+    "summary": "项目预算获批：含施工、无障碍改造与首年养护",
+    "visibility": "internal",
+    "sensitivity": "commercial",
+    "payload": {
+      "budget_ref": "BUD-2026-044",
+      "total_amount": 186000,
+      "currency": "CNY",
+      "category_breakdown": {
+        "fabrication_and_install": 112000,
+        "accessibility_retrofit": 26000,
+        "materials_conservation": 18000,
+        "first_year_maintenance": 30000
+      }
+    }
+  },
+  {
+    "event_id": "evt-029",
+    "event_type": "PROCUREMENT_RECORDED",
+    "aggregate_type": "budget_procurement",
+    "aggregate_id": "PAC-METRO-2026-007#bud-01",
+    "occurred_at": "2026-11-06T15:00:00+08:00",
+    "version": 2,
+    "summary": "采购：浮雕加工与安装服务（含利益冲突声明）",
+    "visibility": "restricted",
+    "sensitivity": "commercial",
+    "payload": {
+      "procurement_ref": "PO-7701",
+      "budget_event_id": "evt-028",
+      "item_summary": "青铜色浮雕加工、现场安装与底座退界改造",
+      "amount": 112000,
+      "conflict_of_interest_declared": false,
+      "contractor_ref": "CONTR-12"
+    }
+  },
+  {
+    "event_id": "evt-030",
+    "event_type": "PROCUREMENT_RECORDED",
+    "aggregate_type": "budget_procurement",
+    "aggregate_id": "PAC-METRO-2026-007#bud-01",
+    "occurred_at": "2026-11-06T15:20:00+08:00",
+    "version": 3,
+    "summary": "采购：展柜与温湿度控制（含利益冲突声明）",
+    "visibility": "restricted",
+    "sensitivity": "commercial",
+    "payload": {
+      "procurement_ref": "PO-7702",
+      "budget_event_id": "evt-028",
+      "item_summary": "独立恒湿展柜2台、凸字说明牌",
+      "amount": 26000,
+      "conflict_of_interest_declared": false,
+      "contractor_ref": "CONTR-08"
+    }
+  },
+  {
+    "event_id": "evt-031",
+    "event_type": "CONSTRUCTION_LOGGED",
+    "aggregate_type": "construction_acceptance",
+    "aggregate_id": "PAC-METRO-2026-007#con-01",
+    "occurred_at": "2026-11-08T22:00:00+08:00",
+    "version": 1,
+    "summary": "夜间停运后施工登记，安全评审通过",
+    "visibility": "internal",
+    "sensitivity": "none",
+    "payload": {
+      "scope": "浮雕墙安装、底座退界、展柜就位",
+      "contractor_ref": "CONTR-12",
+      "started_at": "2026-11-08T22:00:00+08:00",
+      "safety_review_ref": "SR-METRO-2026-118"
+    }
+  },
+  {
+    "event_id": "evt-032",
+    "event_type": "INSTALLATION_ACCEPTED",
+    "aggregate_type": "construction_acceptance",
+    "aggregate_id": "PAC-METRO-2026-007#con-01",
+    "occurred_at": "2026-11-28T11:00:00+08:00",
+    "version": 2,
+    "summary": "三方验收通过：无障碍尺寸、旧物固定可逆性与童谣会签件均核验",
+    "visibility": "open",
+    "sensitivity": "none",
+    "payload": {
+      "result": "accepted",
+      "inspector_roles": ["运营方设施工程师", "校方指导教师", "无障碍顾问", "族群代表"],
+      "accepted_at": "2026-11-28T11:00:00+08:00",
+      "checklist": {
+        "clear_width_mm": 1500,
+        "sign_lower_edge_mm": 1100,
+        "material_reversibility": ["MAT-301", "MAT-302"],
+        "narrative_signoff_form": "FORM-N-2026-007"
+      }
+    }
+  },
+  {
+    "event_id": "evt-033",
+    "event_type": "ATTRIBUTION_RECORDED",
+    "aggregate_type": "credit_attribution",
+    "aggregate_id": "PAC-METRO-2026-007#cr-01",
+    "occurred_at": "2026-12-02T10:00:00+08:00",
+    "version": 1,
+    "summary": "署名定稿：师生实名、叙事者化名、儿童集体化名",
+    "visibility": "open",
+    "sensitivity": "none",
+    "payload": {
+      "display_form": "站厅铭牌与二维码页面",
+      "credits": [
+        { "role": "主创学生", "display_name": "美院社会实践中心 S-07 工作组（实名见校内档案）" },
+        { "role": "指导教师", "display_name": "指导教师团队" },
+        { "role": "narrator", "display_name": "早市记忆讲述者 P-101（化名）" },
+        { "role": "narrator_minority", "display_name": "童谣讲述者 P-204（化名，经本人同意署名）" },
+        { "role": "material_donor", "display_name": "搪瓷站牌捐赠者家属（题记留存全名，公开页匿名）" },
+        { "role": "child_collective", "display_name": "梅园小同学们" }
+      ]
+    }
+  },
+  {
+    "event_id": "evt-034",
+    "event_type": "MAINTENANCE_ASSIGNED",
+    "aggregate_type": "maintenance_obligation",
+    "aggregate_id": "PAC-METRO-2026-007#mo-01",
+    "occurred_at": "2026-12-05T09:00:00+08:00",
+    "version": 1,
+    "summary": "养护义务落至运营方设施部环境艺术岗，按月巡检，责任不随学生毕业消失",
+    "visibility": "open",
+    "sensitivity": "none",
+    "payload": {
+      "obligation_ref": "MO-2026-007",
+      "duty_holder_role": "设施部环境艺术维护岗",
+      "duty_holder_org": "市地铁运营集团",
+      "scope": ["浮雕与底座月度巡检", "搪瓷站牌年度封护", "展柜温湿度周记录", "说明牌与语音二维码巡检"],
+      "review_cycle": "每月20日",
+      "backup_org": "美院社会实践中心（技术支持，不替代运营方责任）"
+    }
+  },
+  {
+    "event_id": "evt-035",
+    "event_type": "INSPECTION_LOGGED",
+    "aggregate_type": "maintenance_obligation",
+    "aggregate_id": "PAC-METRO-2026-007#mo-01",
+    "occurred_at": "2026-12-20T10:30:00+08:00",
+    "version": 2,
+    "summary": "首次月巡检：全部正常",
+    "visibility": "community",
+    "sensitivity": "none",
+    "payload": {
+      "obligation_event_id": "evt-034",
+      "inspected_at": "2026-12-20T10:00:00+08:00",
+      "inspector_role": "设施部环境艺术维护岗",
+      "findings": ["浮雕固定无松动", "展柜湿度55%（区间内）", "二维码语音可播"],
+      "follow_up": []
+    }
+  },
+  {
+    "event_id": "evt-036",
+    "event_type": "STUDENT_GRADED",
+    "aggregate_type": "student_assessment",
+    "aggregate_id": "PAC-METRO-2026-007#grade-s07",
+    "occurred_at": "2027-01-10T17:00:00+08:00",
+    "version": 1,
+    "summary": "课程组对S-07工作组个人作业评分（不向社区公开）",
+    "visibility": "restricted",
+    "sensitivity": "confidential",
+    "payload": {
+      "student_ref": "S-07",
+      "assignment_ref": "PAC-METRO-2026-007#design-01",
+      "grade": "A-",
+      "graded_by": "课程评分委员会",
+      "note": "含个人贡献互评明细，仅限教务与导师查阅"
+    }
+  },
+  {
+    "event_id": "evt-037",
+    "event_type": "INSPECTION_LOGGED",
+    "aggregate_type": "maintenance_obligation",
+    "aggregate_id": "PAC-METRO-2026-007#mo-01",
+    "occurred_at": "2027-01-20T10:30:00+08:00",
+    "version": 3,
+    "summary": "1月巡检：端头陶片一块脱落，展柜正常",
+    "visibility": "community",
+    "sensitivity": "none",
+    "payload": {
+      "obligation_event_id": "evt-034",
+      "inspected_at": "2027-01-20T10:00:00+08:00",
+      "inspector_role": "设施部环境艺术维护岗",
+      "findings": ["端头儿童陶片墙一块陶片脱落", "脱落点固定件锈蚀"],
+      "follow_up": ["上报损坏并核查责任", "临时围挡警示"]
+    }
+  },
+  {
+    "event_id": "evt-038",
+    "event_type": "DAMAGE_REPORTED",
+    "aggregate_type": "defect_claim",
+    "aggregate_id": "PAC-METRO-2026-007#dmg-01",
+    "occurred_at": "2027-01-20T11:00:00+08:00",
+    "version": 1,
+    "summary": "损坏上报：陶片脱落，固定件锈蚀",
+    "visibility": "internal",
+    "sensitivity": "none",
+    "payload": {
+      "damage_ref": "DMG-2027-01",
+      "description": "儿童陶片墙左起第3块脱落，背栓锈蚀断裂，碎片完整可复位",
+      "severity": "functional",
+      "discovered_at": "2027-01-20T10:15:00+08:00",
+      "reported_by_role": "设施部巡检员"
+    }
+  },
+  {
+    "event_id": "evt-039",
+    "event_type": "DEFECT_CLASSIFIED",
+    "aggregate_type": "defect_claim",
+    "aggregate_id": "PAC-METRO-2026-007#dmg-01",
+    "occurred_at": "2027-01-22T15:00:00+08:00",
+    "version": 2,
+    "summary": "归责：背栓型号不满足潮湿环境要求，属施工责任",
+    "visibility": "open",
+    "sensitivity": "none",
+    "payload": {
+      "damage_event_id": "evt-038",
+      "category": "construction_fault",
+      "responsibility_basis": "合同约定304不锈钢背栓，现场核查为镀锌件，与采购清单及验收照片不符",
+      "responsible_party_role": "安装承包方 CONTR-12",
+      "evidence_refs": ["PO-7701", "SR-METRO-2026-118", "验收照片 IMG-1128-07"]
+    }
+  },
+  {
+    "event_id": "evt-040",
+    "event_type": "REPAIR_RESOLVED",
+    "aggregate_type": "defect_claim",
+    "aggregate_id": "PAC-METRO-2026-007#dmg-01",
+    "occurred_at": "2027-01-25T23:00:00+08:00",
+    "version": 3,
+    "summary": "修复完成：承包方更换全部背栓并复位陶片，费用自担",
+    "visibility": "community",
+    "sensitivity": "commercial",
+    "payload": {
+      "damage_event_id": "evt-038",
+      "actions": ["全部背栓更换为316不锈钢", "陶片原位复位", "同类固定点排查12处"],
+      "cost_allocation": { "borne_by": "CONTR-12", "basis": "归责为施工责任，保修条款内" },
+      "completed_at": "2027-01-25T22:30:00+08:00"
+    }
+  },
+  {
+    "event_id": "evt-041",
+    "event_type": "DAMAGE_REPORTED",
+    "aggregate_type": "defect_claim",
+    "aggregate_id": "PAC-METRO-2026-007#dmg-02",
+    "occurred_at": "2027-02-10T11:00:00+08:00",
+    "version": 1,
+    "summary": "损坏上报：站厅入口外立面丝印色泽褪变",
+    "visibility": "internal",
+    "sensitivity": "none",
+    "payload": {
+      "damage_ref": "DMG-2027-02",
+      "description": "近出入口上部丝印带约0.8平方米明显褪色，未见起皮或结构损伤",
+      "severity": "cosmetic",
+      "discovered_at": "2027-02-10T10:40:00+08:00",
+      "reported_by_role": "设施部巡检员"
+    }
+  },
+  {
+    "event_id": "evt-042",
+    "event_type": "DEFECT_CLASSIFIED",
+    "aggregate_type": "defect_claim",
+    "aggregate_id": "PAC-METRO-2026-007#dmg-02",
+    "occurred_at": "2027-02-12T14:00:00+08:00",
+    "version": 2,
+    "summary": "归责：户外紫外线与清洗药剂累积导致，属自然损耗",
+    "visibility": "open",
+    "sensitivity": "none",
+    "payload": {
+      "damage_event_id": "evt-041",
+      "category": "natural_wear",
+      "responsibility_basis": "材料与施工符合约定；褪色为户外紫外线老化与日常清洗剂长期作用，无证据指向设计或施工缺陷",
+      "responsible_party_role": "运营方（养护预算）",
+      "evidence_refs": ["材料质保书 G-044", "清洗剂使用记录"]
+    }
+  },
+  {
+    "event_id": "evt-043",
+    "event_type": "REPAIR_RESOLVED",
+    "aggregate_type": "defect_claim",
+    "aggregate_id": "PAC-METRO-2026-007#dmg-02",
+    "occurred_at": "2027-02-16T22:00:00+08:00",
+    "version": 3,
+    "summary": "修复完成：抗UV重印更换，费用走首年养护预算",
+    "visibility": "community",
+    "sensitivity": "commercial",
+    "payload": {
+      "damage_event_id": "evt-041",
+      "actions": ["抗UV膜重印并更换", "清洗规程改为中性药剂"],
+      "cost_allocation": { "borne_by": "市地铁运营集团", "basis": "归责为自然损耗，列首年养护预算 BUD-2026-044" },
+      "completed_at": "2027-02-16T21:30:00+08:00"
+    }
+  },
+  {
+    "event_id": "evt-044",
+    "event_type": "CONSENT_WITHDRAWN",
+    "aggregate_type": "community_input",
+    "aggregate_id": "PAC-METRO-2026-007#inp-02",
+    "occurred_at": "2027-02-18T09:00:00+08:00",
+    "version": 3,
+    "summary": "P-204撤回音频授权：二维码音频撤除，保留经会签的脱敏文字",
+    "visibility": "restricted",
+    "sensitivity": "minority",
+    "payload": {
+      "consent_event_id": "evt-005",
+      "scope_remaining": { "text_anonymized": true, "audio": false, "narrative_reference": true },
+      "effect_on_records": "站点二维码音频于24小时内下线；已印发物料中音频URL以贴纸覆盖；后续任何版本不得再引用原录音。"
+    }
+  },
+  {
+    "event_id": "evt-045",
+    "event_type": "OBLIGATION_ESCALATED",
+    "aggregate_type": "maintenance_obligation",
+    "aggregate_id": "PAC-METRO-2026-007#mo-01",
+    "occurred_at": "2027-02-25T10:00:00+08:00",
+    "version": 4,
+    "summary": "2月月巡检逾期5日未执行，升级至设施部经理",
+    "visibility": "internal",
+    "sensitivity": "none",
+    "payload": {
+      "obligation_event_id": "evt-034",
+      "reason": "2月20日例行巡检未执行且未提前报备",
+      "escalated_to": "设施部经理",
+      "status": "open"
+    }
+  },
+  {
+    "event_id": "evt-046",
+    "event_type": "INSPECTION_LOGGED",
+    "aggregate_type": "maintenance_obligation",
+    "aggregate_id": "PAC-METRO-2026-007#mo-01",
+    "occurred_at": "2027-03-01T10:00:00+08:00",
+    "version": 5,
+    "summary": "补检完成：无新增异常，升级事项关闭",
+    "visibility": "community",
+    "sensitivity": "none",
+    "payload": {
+      "obligation_event_id": "evt-034",
+      "inspected_at": "2027-03-01T09:30:00+08:00",
+      "inspector_role": "设施部环境艺术维护岗（经理在场）",
+      "findings": ["陶片复位点牢固", "丝印无色差", "音频二维码已撤除并改贴文字说明"],
+      "follow_up": ["升级事项关闭", "调整巡检提醒为双责任人"]
+    }
+  },
+  {
+    "event_id": "evt-047",
+    "event_type": "MATERIAL_WITHDRAWN",
+    "aggregate_type": "material_agreement",
+    "aggregate_id": "PAC-METRO-2026-007#mat-302",
+    "occurred_at": "2027-03-15T11:00:00+08:00",
+    "version": 5,
+    "summary": "借期届满，MAT-302织布机具按协议原样归还出借人",
+    "visibility": "community",
+    "sensitivity": "none",
+    "payload": {
+      "material_ref": "MAT-302",
+      "reason": "借用协议 AGR-M-302 借期届满，出借人按约取回",
+      "disposition": "returned_to_owner",
+      "community_notice": "展柜与社区公告页提前7日公示轮展结束，点交时村集体代表在场",
+      "replacement": "展柜更换为村集体提供的纺织工具复制品（另行登记）"
+    }
+  },
+  {
+    "event_id": "evt-048",
+    "event_type": "STEWARDSHIP_HANDED_OVER",
+    "aggregate_type": "site_commission",
+    "aggregate_id": "PAC-METRO-2026-007",
+    "occurred_at": "2027-06-30T15:00:00+08:00",
+    "version": 2,
+    "summary": "学生毕业前移交：养护义务与完整版本档案由运营方签收，承诺持续可追溯",
+    "visibility": "open",
+    "sensitivity": "none",
+    "payload": {
+      "handover_ref": "HO-2027-007",
+      "recipient_org": "市地铁运营集团设施部",
+      "obligation_event_ids": ["evt-034"],
+      "archive_ref": "archive://PAC-METRO-2026-007/full-event-log@2027-06-30",
+      "archive_includes": ["全部方案版本", "授权与撤回记录", "捐借协议索引", "验收与归责记录", "巡检与修复记录"],
+      "accepted": true,
+      "acceptance_note": "运营方确认人员变动后凭岗位与档案继续履约"
+    }
+  }
+]

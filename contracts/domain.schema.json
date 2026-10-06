@@ -9,7 +9,9 @@
     "aggregate_id",
     "occurred_at",
     "version",
-    "summary"
+    "summary",
+    "visibility",
+    "payload"
   ],
   "properties": {
     "event_id": {
@@ -20,10 +22,40 @@
       "type": "string",
       "enum": [
         "COMMISSION_OPENED",
+        "STEWARDSHIP_HANDED_OVER",
+        "EXHIBITION_WITHDRAWN",
+        "SITE_CONTEXT_RECORDED",
         "INPUT_CONSENTED",
+        "NARRATIVE_SOURCE_CITED",
+        "CONSENT_WITHDRAWN",
+        "FEEDBACK_RECORDED",
+        "FEEDBACK_TRIAGED",
+        "OBJECTION_RESPONDED",
+        "DESIGN_DRAFTED",
+        "DESIGN_REVISION_PUBLISHED",
         "DESIGN_RESPONDED",
+        "SAFETY_OR_DISCRIMINATION_REFUSAL",
+        "MATERIAL_PLEDGED",
+        "OWNERSHIP_VERIFIED",
+        "MATERIAL_LOAN_AGREEMENT_SIGNED",
+        "MATERIAL_DONATION_AGREEMENT_SIGNED",
+        "MATERIAL_WITHDRAWN",
+        "MATERIAL_INCORPORATED",
+        "CHILD_PARTICIPATION_CONSENTED",
+        "CHILD_WORK_AGREEMENT_RECORDED",
+        "BUDGET_APPROVED",
+        "PROCUREMENT_RECORDED",
+        "CONSTRUCTION_LOGGED",
         "INSTALLATION_ACCEPTED",
-        "MAINTENANCE_ASSIGNED"
+        "DAMAGE_REPORTED",
+        "DEFECT_CLASSIFIED",
+        "REPAIR_RESOLVED",
+        "ATTRIBUTION_RECORDED",
+        "MAINTENANCE_ASSIGNED",
+        "INSPECTION_LOGGED",
+        "OBLIGATION_ESCALATED",
+        "STUDENT_GRADED",
+        "RECORD_CORRECTED"
       ]
     },
     "aggregate_type": {
@@ -31,8 +63,16 @@
       "enum": [
         "site_commission",
         "community_input",
+        "community_feedback",
         "design_revision",
-        "maintenance_obligation"
+        "material_agreement",
+        "child_participation",
+        "budget_procurement",
+        "construction_acceptance",
+        "defect_claim",
+        "credit_attribution",
+        "maintenance_obligation",
+        "student_assessment"
       ]
     },
     "aggregate_id": {
@@ -50,7 +90,1833 @@
     "summary": {
       "type": "string",
       "minLength": 1
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "open",
+        "community",
+        "internal",
+        "restricted"
+      ]
+    },
+    "sensitivity": {
+      "type": "string",
+      "enum": [
+        "none",
+        "personal",
+        "minority",
+        "commercial",
+        "confidential"
+      ]
+    },
+    "payload": {
+      "type": "object"
     }
   },
-  "additionalProperties": true
+  "additionalProperties": true,
+  "allOf": [
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "COMMISSION_OPENED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "site_commission"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "open",
+              "community"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "site_name",
+              "site_kind",
+              "commissioning_party"
+            ],
+            "properties": {
+              "site_kind": {
+                "type": "string",
+                "enum": [
+                  "transit_station",
+                  "village",
+                  "school",
+                  "other_public_space"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "STEWARDSHIP_HANDED_OVER"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "site_commission"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "open",
+              "community",
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none",
+              "commercial"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "handover_ref",
+              "recipient_org",
+              "obligation_event_ids",
+              "archive_ref",
+              "accepted"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "EXHIBITION_WITHDRAWN"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "site_commission"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "open",
+              "community",
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "reason",
+              "decided_by",
+              "community_notice",
+              "disposition_of_components"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "SITE_CONTEXT_RECORDED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "community_input"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "internal",
+              "restricted"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "minority",
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "participant_ref",
+              "source_type",
+              "narrative_summary"
+            ],
+            "properties": {
+              "source_type": {
+                "type": "string",
+                "enum": [
+                  "interview",
+                  "workshop",
+                  "field_observation",
+                  "oral_history",
+                  "document"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "INPUT_CONSENTED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "community_input"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "restricted"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "minority"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "participant_ref",
+              "context_event_id",
+              "consent_scope",
+              "consent_basis"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "NARRATIVE_SOURCE_CITED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "community_input"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "internal",
+              "restricted"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "minority",
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "source_ref",
+              "provenance_type",
+              "access_grant"
+            ],
+            "properties": {
+              "provenance_type": {
+                "type": "string",
+                "enum": [
+                  "resident_account",
+                  "family_archive",
+                  "local_record",
+                  "published_work",
+                  "oral_tradition"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "CONSENT_WITHDRAWN"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "community_input"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "restricted",
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "minority"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "consent_event_id",
+              "scope_remaining",
+              "effect_on_records"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "FEEDBACK_RECORDED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "community_feedback"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "community",
+              "restricted"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "minority",
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "submitter_category",
+              "content_summary",
+              "is_accessibility_related"
+            ],
+            "properties": {
+              "submitter_category": {
+                "type": "string",
+                "enum": [
+                  "commuter",
+                  "villager",
+                  "accessibility_user",
+                  "minority_group_member",
+                  "student",
+                  "operator",
+                  "other"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "FEEDBACK_TRIAGED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "community_feedback"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "minority",
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "feedback_event_ids",
+              "reach_summary",
+              "weighting_rationale",
+              "minority_or_accessibility_flags"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "OBJECTION_RESPONDED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "community_feedback"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "community",
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "minority",
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "objection_event_id",
+              "response",
+              "disposition",
+              "follow_up_required"
+            ],
+            "properties": {
+              "disposition": {
+                "type": "string",
+                "enum": [
+                  "accepted",
+                  "partially_adopted",
+                  "not_adopted"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "DESIGN_DRAFTED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "design_revision"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "open",
+              "community",
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "title",
+              "based_on_input_event_ids",
+              "proposal_summary"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "DESIGN_REVISION_PUBLISHED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "design_revision"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "open",
+              "community"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "revision_no",
+              "based_on_draft_event_id",
+              "change_summary"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "DESIGN_RESPONDED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "design_revision"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "open",
+              "community"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "feedback_event_id",
+              "decision",
+              "rationale"
+            ],
+            "properties": {
+              "decision": {
+                "type": "string",
+                "enum": [
+                  "adopted",
+                  "partially_adopted",
+                  "not_adopted"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "SAFETY_OR_DISCRIMINATION_REFUSAL"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "design_revision"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "open",
+              "community",
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "refused_suggestion_summary",
+              "basis_category",
+              "basis_detail"
+            ],
+            "properties": {
+              "basis_category": {
+                "type": "string",
+                "enum": [
+                  "safety_code",
+                  "structural_safety",
+                  "fire_egress",
+                  "accessibility_barrier",
+                  "discrimination",
+                  "privacy_harm",
+                  "other_legal"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "MATERIAL_PLEDGED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "material_agreement"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "restricted",
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "material_ref",
+              "donor_category",
+              "description",
+              "intended_use"
+            ],
+            "properties": {
+              "donor_category": {
+                "type": "string",
+                "enum": [
+                  "resident",
+                  "villager",
+                  "village_collective",
+                  "alumnus",
+                  "institution",
+                  "other"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "OWNERSHIP_VERIFIED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "material_agreement"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "restricted",
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "material_ref",
+              "ownership_basis",
+              "reversible_scope",
+              "post_project_arrangement"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "MATERIAL_LOAN_AGREEMENT_SIGNED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "material_agreement"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "restricted"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "commercial",
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "agreement_ref",
+              "material_ref",
+              "loan_period",
+              "return_terms",
+              "maintenance_duty",
+              "withdrawal_terms"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "MATERIAL_DONATION_AGREEMENT_SIGNED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "material_agreement"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "restricted"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "commercial",
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "agreement_ref",
+              "material_ref",
+              "ownership_transfer_terms",
+              "maintenance_duty",
+              "withdrawal_terms"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "MATERIAL_WITHDRAWN"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "material_agreement"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "community",
+              "internal",
+              "restricted"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "material_ref",
+              "reason",
+              "disposition",
+              "community_notice"
+            ],
+            "properties": {
+              "disposition": {
+                "type": "string",
+                "enum": [
+                  "returned_to_owner",
+                  "replaced_in_work",
+                  "removed_from_work"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "MATERIAL_INCORPORATED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "material_agreement"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "internal",
+              "restricted"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none",
+              "personal"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "material_ref",
+              "revision_event_id",
+              "reversibility_confirmed"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "CHILD_PARTICIPATION_CONSENTED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "child_participation"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "restricted"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "confidential"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "child_participation_ref",
+              "guardian_consent",
+              "activity_scope",
+              "withdrawal_policy_summary"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "CHILD_WORK_AGREEMENT_RECORDED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "child_participation"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "restricted"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "confidential"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "agreement_ref",
+              "child_participation_refs",
+              "display_terms",
+              "withdrawal_terms",
+              "attribution_choice"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "BUDGET_APPROVED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "budget_procurement"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none",
+              "commercial"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "budget_ref",
+              "total_amount",
+              "currency",
+              "category_breakdown"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "PROCUREMENT_RECORDED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "budget_procurement"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "restricted",
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "commercial"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "procurement_ref",
+              "budget_event_id",
+              "item_summary",
+              "amount",
+              "conflict_of_interest_declared"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "CONSTRUCTION_LOGGED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "construction_acceptance"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none",
+              "commercial"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "scope",
+              "contractor_ref",
+              "started_at",
+              "safety_review_ref"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "INSTALLATION_ACCEPTED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "construction_acceptance"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "open",
+              "community",
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "result",
+              "inspector_roles",
+              "accepted_at"
+            ],
+            "properties": {
+              "result": {
+                "type": "string",
+                "enum": [
+                  "accepted",
+                  "accepted_with_conditions",
+                  "rejected"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "DAMAGE_REPORTED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "defect_claim"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "internal",
+              "restricted"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "damage_ref",
+              "description",
+              "severity",
+              "discovered_at"
+            ],
+            "properties": {
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "cosmetic",
+                  "functional",
+                  "safety"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "DEFECT_CLASSIFIED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "defect_claim"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "open",
+              "community",
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "damage_event_id",
+              "category",
+              "responsibility_basis",
+              "responsible_party_role"
+            ],
+            "properties": {
+              "category": {
+                "type": "string",
+                "enum": [
+                  "design_defect",
+                  "construction_fault",
+                  "natural_wear",
+                  "third_party_damage",
+                  "undetermined"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "REPAIR_RESOLVED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "defect_claim"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "community",
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "commercial",
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "damage_event_id",
+              "actions",
+              "cost_allocation",
+              "completed_at"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "ATTRIBUTION_RECORDED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "credit_attribution"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "open",
+              "community"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "personal",
+              "minority",
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "credits",
+              "display_form"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "MAINTENANCE_ASSIGNED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "maintenance_obligation"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "open",
+              "community",
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "obligation_ref",
+              "duty_holder_role",
+              "duty_holder_org",
+              "scope",
+              "review_cycle"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "INSPECTION_LOGGED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "maintenance_obligation"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "community",
+              "internal"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "obligation_event_id",
+              "inspected_at",
+              "inspector_role",
+              "findings",
+              "follow_up"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "OBLIGATION_ESCALATED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "maintenance_obligation"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "internal",
+              "restricted"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "obligation_event_id",
+              "reason",
+              "escalated_to",
+              "status"
+            ],
+            "properties": {
+              "status": {
+                "type": "string",
+                "enum": [
+                  "open",
+                  "in_progress",
+                  "closed"
+                ]
+              }
+            }
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "STUDENT_GRADED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "aggregate_type": {
+            "const": "student_assessment"
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "restricted"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "confidential"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "student_ref",
+              "assignment_ref",
+              "grade",
+              "graded_by"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    },
+    {
+      "if": {
+        "type": "object",
+        "properties": {
+          "event_type": {
+            "const": "RECORD_CORRECTED"
+          }
+        },
+        "required": [
+          "event_type"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "open",
+              "community",
+              "internal",
+              "restricted"
+            ]
+          },
+          "sensitivity": {
+            "type": "string",
+            "enum": [
+              "none",
+              "personal",
+              "minority",
+              "commercial",
+              "confidential"
+            ]
+          },
+          "payload": {
+            "type": "object",
+            "required": [
+              "corrected_event_id",
+              "corrected_event_type",
+              "correction_reason"
+            ],
+            "properties": {}
+          }
+        },
+        "required": [
+          "payload"
+        ]
+      }
+    }
+  ]
 }
